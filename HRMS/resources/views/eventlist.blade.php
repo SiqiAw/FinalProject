@@ -2,6 +2,13 @@
 @section('content')
 
     <div class="container">
+
+        <div style="margin-bottom: 20px;">
+            <a href="{{ route('showCalendar') }}" class="btn btn-success">
+                Back
+            </a>
+        </div>
+
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>

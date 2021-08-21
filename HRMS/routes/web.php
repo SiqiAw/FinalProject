@@ -81,3 +81,30 @@ Route::get('/editemployment/{id}',[App\Http\Controllers\EmploymentController::cl
 Route::post('/updateemployment',[App\Http\Controllers\EmploymentController::class,'update'])->name('updateEmployment');
 Route::get('/deleteemployment/{id}',[App\Http\Controllers\EmploymentController::class,'delete'])->name('deleteEmployment');
 Route::post('/searchemployment',[App\Http\Controllers\EmploymentController::class,'search'])->name('searchEmployment');
+
+// country setting route
+Route::get('/country',[App\Http\Controllers\CountryController::class,'show'])->name('showCountry');
+Route::get('/country/addcountry',[App\Http\Controllers\CountryController::class,'create'])->name('showAddCountry');
+Route::post('/country/store',[App\Http\Controllers\CountryController::class,'store'])->name('addCountry');
+Route::get('/editcountry/{id}',[App\Http\Controllers\CountryController::class,'edit'])->name('editCountry');
+Route::post('/updatecountry',[App\Http\Controllers\CountryController::class,'update'])->name('updateCountry');
+Route::get('/deletecountry/{id}',[App\Http\Controllers\CountryController::class,'delete'])->name('deleteCountry');
+Route::post('/searchcountry',[App\Http\Controllers\CountryController::class,'search'])->name('searchCountry');
+
+// nationality setting route
+Route::get('/nationality',[App\Http\Controllers\NationalityController::class,'show'])->name('showNationality');
+Route::get('/nationality/addnationality',[App\Http\Controllers\NationalityController::class,'create'])->name('showAddNationality');
+Route::post('/nationality/store',[App\Http\Controllers\NationalityController::class,'store'])->name('addNationality');
+Route::get('/editnationality/{id}',[App\Http\Controllers\NationalityController::class,'edit'])->name('editNationality');
+Route::post('/updatenationality',[App\Http\Controllers\NationalityController::class,'update'])->name('updateNationality');
+Route::get('/deletenationality/{id}',[App\Http\Controllers\NationalityController::class,'delete'])->name('deleteNationality');
+Route::post('/searchnationality',[App\Http\Controllers\NationalityController::class,'search'])->name('searchNationality');
+
+// bankname setting route
+Route::get('/bankname',[App\Http\Controllers\BanknameController::class,'show'])->name('showBankname');
+Route::get('/bankname/addbankname',[App\Http\Controllers\BanknameController::class,'create'])->name('showAddBankname');
+Route::post('/bankname/store',[App\Http\Controllers\BanknameController::class,'store'])->name('addBankname');
+Route::get('/editbankname/{id}',[App\Http\Controllers\BanknameController::class,'edit'])->name('editBankname');
+Route::post('/updatebankname',[App\Http\Controllers\BanknameController::class,'update'])->name('updateBankname');
+Route::get('/deletebankname/{id}',[App\Http\Controllers\BanknameController::class,'delete'])->name('deleteBankname');
+Route::post('/searchbankname',[App\Http\Controllers\BanknameController::class,'search'])->name('searchBankname');

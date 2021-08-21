@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
-@include('addjobtitle')
+@include('addbankname')
 
     <div class="container">
 
         <div style="margin-bottom: 20px;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addJobtitle">
-                Add Job Title
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBankname">
+                Add Bank
             </button>
             <div class="col-md-3" style="float:right;">
-                <form class="input-group" method="post" action="{{ route('searchJobtitle') }}">
+                <form class="input-group" method="post" action="{{ route('searchBankname') }}">
                     @csrf
                     <input type="text" class="form-control" id="search" name="search" placeholder="search">
                     <button class="btn btn-dark" type="button">Search</button>
@@ -28,30 +28,26 @@
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th width="5%">ID</th>
-                    <th width="15%">Job Title</th>
-                    <th width="20%">Department</th>
-                    <th>Description</th>
-                    <th width="17%">Action</th>
+                    <th>ID</th>
+                    <th>Bank Name</th>
+                    <th>Action</th>
                 </tr>
             </thead>
-            @foreach($jobtitles as $jobtitle)
+            @foreach($banknames as $bankname)
             <tbody>
                 <tr>
-                    <td>{{ $jobtitle->id }}</td>
-                    <td>{{ $jobtitle->jobtitle_name }}</td>
-                    <td>{{ $jobtitle->department_id }}</td>
-                    <td>{{ $jobtitle->description }}</td>
+                    <td>{{ $bankname->id }}</td>
+                    <td>{{ $bankname->name }}</td>
                     
                     <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editJobtitle{{$jobtitle->id}}">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editBankname{{$bankname->id}}">
                             Edit
                         </button>
-                        <a href="{{ route('deleteJobtitle', ['id' => $jobtitle->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this Job title?')">
+                        <a href="{{ route('deleteBankname', ['id' => $bankname->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this bank?')">
                             Delete
                         </a>
                     </td>
-                    @include('editjobtitle')
+                    @include('editbankname')
                 </tr>
             </tbody>
             @endforeach

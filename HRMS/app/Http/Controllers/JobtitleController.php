@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Jobtitle;
 use App\Models\Department;
 use Session;
+use DB;
 
 class JobtitleController extends Controller
 {
     function create()
     {
-        return view('addjobtitle')->with('departments',Department::all());
+        return view('addjobtitle')->with('departments', Department::all());
     }
 
     function store(Request $request)
@@ -65,5 +66,18 @@ class JobtitleController extends Controller
 
         Session::flash('success', "Job title deleted.");
         return redirect()->route('showJobtitle');
+    }
+    
+    function search()
+    {
+        // $request = request();
+        // $keyword = $request->search;
+        // $jobtitles = DB::table('jobtitles')
+        // ->where('jobtitles.jobtitle_name', 'like', '%' .$keyword. '%')
+        // ->orWhere('jobtitles.department_id', 'like', '%' .$keyword. '%')
+        // ->orWhere('jobtitles.description', 'like', '%' .$keyword. '%')
+        // ->get();
+
+        // return view('jobtitle')->with('jobtitles', $jobtitles);
     }
 }
