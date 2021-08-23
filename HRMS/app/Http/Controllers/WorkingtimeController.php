@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Workingtime;
 use Session;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class WorkingtimeController extends Controller
 {
@@ -36,7 +37,7 @@ class WorkingtimeController extends Controller
 
     function show()
     {
-        $workingtimes = Workingtime::all();
+        $workingtimes = Workingtime::paginate(10);
         return view('workingtime')->with('workingtimes', $workingtimes);
     }
 

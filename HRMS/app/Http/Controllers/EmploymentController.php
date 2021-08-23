@@ -7,6 +7,7 @@ use App\Models\Employment;
 use App\Models\Workingtime;
 use Session;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class EmploymentController extends Controller
 {
@@ -29,7 +30,7 @@ class EmploymentController extends Controller
 
     function show()
     {
-        $employments = Employment::all();
+        $employments = Employment::paginate(10);
         return view('employmentpage')->with('employments', $employments)
                                      ->with('workingtimes', Workingtime::all());
     }

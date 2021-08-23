@@ -66,33 +66,55 @@
     <div class="wrapper">
         <nav id="sidebar">
             <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Dashboard</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Page1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page2</a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="#">Dashboard</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a href="#">Employee</a>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                    <a href="#">Attendance</a>
+                </li>
+                <li>
+                    <a href="#">Leave</a>
+                </li>
+                <li>
+                    <a href="#">Payroll</a>
+                </li>
+                <li>
+                    <a href="{{ route('showCalendar') }}">Calendar</a>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Settings</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="#">Page 1</a>
+                            <a href="{{ route('showNationality') }}">{{ __('Nationality') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showCountry') }}">{{ __('Country') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showBankname') }}">{{ __('Bank Name') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showCert') }}">{{ __('Certificate') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showMarital') }}">{{ __('Marital Status') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showDept') }}">{{ __('Department') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showJobtitle') }}">{{ __('Job Title') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showEmployment') }}">{{ __('Employment Type') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showWRKtime') }}">{{ __('Working Time') }}</a>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="#">Portfolio</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
                 </li>
             </ul>
         </nav>

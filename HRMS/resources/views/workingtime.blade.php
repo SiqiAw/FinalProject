@@ -57,4 +57,8 @@
             @endforeach
         </table>
     </div>
+
+    <div class="page_link" style="float: right;">
+        {{$workingtimes->links()}}
+    </div>
 @endsection

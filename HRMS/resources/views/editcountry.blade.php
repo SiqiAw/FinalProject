@@ -1,6 +1,6 @@
 <form method="post" action="{{route('updateCountry')}}" enctype="multipart/form-data">
   @csrf 
-  <div class="modal fade" id="editCountry{{$countryname->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editCountry{{$country->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -10,11 +10,11 @@
         <div class="modal-body">
               <div class="mb-3">
                   <label>Country ID</label>
-                  <input type="text" class="form-control" id="ID" name="ID" value="{{ $countryname->id }}">
+                  <input type="text" class="form-control" id="ID" name="ID" value="{{ $country->id }}">
               </div>
               <div class="mb-3">
                   <label>Country Name</label>
-                  <input type="text" class="form-control" id="name" name="name" value="{{ $countryname->name }}">
+                  <input type="text" class="form-control" id="name" name="name" value="{{ $country->name }}">
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -1,5 +1,4 @@
-<form method="post" action="{{route('updateCert')}}" enctype="multipart/form-data">
-  @csrf 
+
   <div class="modal fade" id="editCert{{$certificate->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -8,6 +7,8 @@
           <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+        <form method="post" action="{{route('updateCert')}}" enctype="multipart/form-data">
+            @csrf 
               <div class="form-group">
                   <label>Certificate ID</label>
                   <input type="text" class="form-control" id="ID" name="ID" value="{{ $certificate->id }}">
@@ -18,10 +19,10 @@
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Update Department</button>
+                  <button type="submit" class="btn btn-primary">Update Certificate</button>
               </div>
+          </form>
         </div> 
       </div>
     </div>
   </div>
-</form>

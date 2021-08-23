@@ -17,12 +17,12 @@
                 <input type="color" class="form-control" name="color" placeholder="Enter the color" style="height: 40px;" />
             </div>
             <div class="mb-3">
-                <label for="">Start Date/Time</label>
-                <input type="datetime-local" id="start" class="form-control" name="start_date" placeholder="Enter start date" />
+                <label for="">Start Date</label>
+                <input type="date" id="start" class="form-control" name="start_date" placeholder="Enter start date" />
             </div>
             <div class="mb-3">
-                <label for="">End Date/Time</label>
-                <input type="datetime-local" id="end" class="form-control" name="end_date" placeholder="Enter end date" />
+                <label for="">End Date</label>
+                <input type="date" id="end" class="form-control" name="end_date" placeholder="Enter end date" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -30,7 +30,6 @@
             </div>
         </form>
       </div>
-      
     </div>
   </div>
 </div>

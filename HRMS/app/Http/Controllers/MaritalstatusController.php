@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Statusmarital;
 use Session;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class MaritalstatusController extends Controller
 {
@@ -32,7 +33,7 @@ class MaritalstatusController extends Controller
 
     function show()
     {
-        $statusmaritals = Statusmarital::all();
+        $statusmaritals = Statusmarital::paginate(10);
         return view('maritalpage')->with('statusmaritals', $statusmaritals);
     }
 

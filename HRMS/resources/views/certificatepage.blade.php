@@ -54,4 +54,8 @@
             @endforeach
         </table>
     </div>
+
+    <div class="page_link" style="float: right;">
+        {{$certificates->links()}}
+    </div>
 @endsection

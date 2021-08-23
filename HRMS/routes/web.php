@@ -27,6 +27,8 @@ Route::get('/calendar/showeventdetail', [App\Http\Controllers\EventController::c
 Route::get('/editevent/{id}', [App\Http\Controllers\EventController::class, 'edit'])->name('editEvent');
 Route::post('/updateevent', [App\Http\Controllers\EventController::class, 'update'])->name('updateEvent');
 Route::get('/deleteevent/{id}', [App\Http\Controllers\EventController::class, 'delete'])->name('deleteEvent'); 
+Route::post('/searchbydate', [App\Http\Controllers\EventController::class, 'searchDate'])->name('searchByDate');
+Route::post('/searchevent', [App\Http\Controllers\EventController::class, 'search'])->name('searchEvent');
 
 // department setting route
 Route::get('/department',[App\Http\Controllers\DepartmentController::class,'show'])->name('showDept');

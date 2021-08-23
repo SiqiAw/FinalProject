@@ -33,17 +33,17 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            @foreach($nationalitynames as $nationalityname)
+            @foreach($nationalities as $nationality)
             <tbody>
                 <tr>
-                    <td>{{ $nationalityname->id }}</td>
-                    <td>{{ $nationalityname->name }}</td>
+                    <td>{{ $nationality->id }}</td>
+                    <td>{{ $nationality->name }}</td>
                     
                     <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editNationality{{$nationalityname->id}}">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editNationality{{$nationality->id}}">
                             Edit
                         </button>
-                        <a href="{{ route('deleteNationality', ['id' => $nationalityname->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this nationality?')">
+                        <a href="{{ route('deleteNationality', ['id' => $nationality->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this nationality?')">
                             Delete
                         </a>
                     </td>
@@ -52,5 +52,9 @@
             </tbody>
             @endforeach
         </table>
+    </div>
+
+    <div class="page_link" style="float: right;">
+        {{$nationalities->links()}}
     </div>
 @endsection

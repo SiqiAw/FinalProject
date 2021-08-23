@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use Session;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DepartmentController extends Controller
 {
@@ -32,7 +33,7 @@ class DepartmentController extends Controller
 
     function show()
     {
-        $departments = Department::all();
+        $departments = Department::paginate(10);
         return view('departmentpage')->with('departments', $departments);
     }
 

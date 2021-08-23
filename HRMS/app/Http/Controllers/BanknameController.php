@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Bankname;
 use Session;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BanknameController extends Controller
 {
@@ -32,7 +33,7 @@ class BanknameController extends Controller
 
     function show()
     {
-        $banknames = Bankname::all();
+        $banknames = Bankname::paginate(10);
         return view('banknamepage')->with('banknames', $banknames);
     }
 

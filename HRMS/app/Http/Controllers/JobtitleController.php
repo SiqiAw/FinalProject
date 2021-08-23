@@ -7,6 +7,7 @@ use App\Models\Jobtitle;
 use App\Models\Department;
 use Session;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class JobtitleController extends Controller
 {
@@ -32,7 +33,7 @@ class JobtitleController extends Controller
 
     function show()
     {
-        $jobtitles = Jobtitle::all();
+        $jobtitles = Jobtitle::paginate(10);
         return view('jobtitle')->with('jobtitles', $jobtitles)
                                ->with('departments', Department::all());
     }

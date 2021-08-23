@@ -55,4 +55,8 @@
             @endforeach
         </table>
     </div>
+
+    <div class="page_link" style="float: right;">
+        {{$employments->links()}}
+    </div>
 @endsection

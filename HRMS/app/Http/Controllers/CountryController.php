@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Country;
 use Session;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CountryController extends Controller
 {
@@ -20,11 +21,11 @@ class CountryController extends Controller
             'name' => 'required',
         ]);
 
-        $countrynames = new Country;
+        $countries = new Country;
 
-        $countrynames->name = $request->input('name');
+        $countries->name = $request->input('name');
         
-        $countrynames->save();
+        $countries->save();
 
         Session::flash('success', "Country added.");
         return redirect()->route('showCountry');
@@ -32,31 +33,31 @@ class CountryController extends Controller
 
     function show()
     {
-        $countrynames = Country::all();
-        return view('countrypage')->with('countrynames', $countrynames);
+        $countries = Country::paginate(10);
+        return view('countrypage')->with('countries', $countries);
     }
 
     function edit($id)
     {
-        $countrynames = Country::find($id);
-        return view('editcountry', compact('countrynames','id'));
+        $countries = Country::find($id);
+        return view('editcountry', compact('countries','id'));
     }
 
     function update()
     {
         $r=request();//retrive submited form data 
-        $countrynames = Country::find($r->ID);
+        $countries = Country::find($r->ID);
 
-        $countrynames->name=$r->name;
+        $countries->name=$r->name;
         
-        $countrynames->save(); //run the SQL update statment
+        $countries->save(); //run the SQL update statment
         return redirect()->route('showCountry');
     }
 
     function delete($id)
     {
-        $countrynames = Country::find($id);
-        $countrynames->delete();
+        $countries = Country::find($id);
+        $countries->delete();
 
         Session::flash('success', 'Counrty deleted.');
         return redirect()->route('showCountry');
@@ -66,10 +67,10 @@ class CountryController extends Controller
     {
         $request = request();
         $keyword = $request->search;
-        $countrynames = DB::table('countrynames')
+        $countries = DB::table('countries')
         ->where('name', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('countrypage')->with('countrynames', $countrynames);
+        return view('countrypage')->with('countries', $countries);
     }
 }

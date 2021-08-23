@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Certificate;
 use Session;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-class CertificateCotroller extends Controller
+class CertificateController extends Controller
 {
+    //
     function create()
     {
         return view('addcert');
@@ -32,7 +34,7 @@ class CertificateCotroller extends Controller
 
     function show()
     {
-        $certificates = Certificate::all();
+        $certificates = Certificate::paginate(10);
         return view('certificatepage')->with('certificates', $certificates);
     }
 
@@ -72,4 +74,5 @@ class CertificateCotroller extends Controller
 
         return view('certificatepage')->with('certificates', $certificates);
     }
+    
 }

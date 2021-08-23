@@ -53,4 +53,8 @@
             @endforeach
         </table>
     </div>
+
+    <div class="page_link" style="float: right;">
+        {{$banknames->links()}}
+    </div>
 @endsection

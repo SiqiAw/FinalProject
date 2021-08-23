@@ -4,32 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
-use MaddHatter\LaravelFullCalendar\Facades\Calendar;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 use Session;
+use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
-        $event = [];
-        
-        foreach($events as $row){
-            $enddate = $row->end_date."24:00:00";
-            $event[] = \Calendar::event(
-                $row->eventname,
-                false,
-                new \DateTime($row->start_date),
-                new \DateTime($row->end_date),
-                $row->id,
-                [
-                    'color' => $row->color,
-                ]
-            );
+        $events = [];
+        $data = Event::all();
+        if($data->count())
+         {
+            foreach ($data as $key => $value) 
+            {
+                $events[] = Calendar::event(
+                    $value->eventname,
+                    true,
+                    new \DateTime($value->start_date),
+                    new \DateTime($value->end_date.'+1 day'),
+                    $value->id,
+                 [
+                     'color' => $value->color,
+                 ]
+                );
+            }
         }
-
-        $calendar = \Calendar::addEvents($event);
-        return view('calendarpage', compact('events','calendar'));
+        
+        $calendar = Calendar::addEvents($events);
+        return view('calendarpage', compact('calendar'));
 
     }
 
@@ -63,7 +67,7 @@ class EventController extends Controller
 
     public function show()
     {
-        $events = Event::all();
+        $events = Event::paginate(10);
         return view('eventlist')->with('events', $events);
     }
 
@@ -76,24 +80,16 @@ class EventController extends Controller
     public function update()
     {
         $r=request();//retrive submited form data
-        $events = Event::find($r->ID); //get the record based on product ID
-        
-        $this->validate($r,[
-            'eventname' => 'required',
-            'color' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
+        $events = Event::where('id', $r->get('id')) //get the record based on product ID
+        ->update([
+            'eventname' => $r->get('eventname'),
+            'color' => $r->get('color'),
+            'start_date' => $r->get('start_date'),
+            'end_date' => $r->get('end_date')
         ]);
 
-        $events->eventname = $r->eventname;
-        $events->color = $r->color;
-        $events->start_date = $r->start_date;
-        $events->end_date = $r->end_date;
-
-        $events->save();
-
         Session::flash('success', "Event update successful!");
-        return redirect()->route('showCalendar');
+        return redirect()->route('showEventList');
 
     }
 
@@ -103,7 +99,30 @@ class EventController extends Controller
         $events->delete();
 
         Session::flash('success', "Event deleted!");
-        return redirect()->route('showCalendar');
+        return redirect()->route('showEventList');
         
+    }
+
+    public function searchDate()
+    {
+        $request = request();
+        $keyword = $request->searchdate;
+        $events = DB::table('events')
+        ->where('start_date', 'like', '%' .$keyword. '%')
+        ->orWhere('end_date', 'like', '%' .$keyword. '%')
+        ->get();
+
+        return view('eventlist')->with('events', $events);
+    }
+
+    public function search()
+    {
+        $request = request();
+        $keyword = $request->search;
+        $events = DB::table('events')
+        ->where('eventname', 'like', '%' .$keyword. '%')
+        ->get();
+
+        return view('eventlist')->with('events', $events);
     }
 }

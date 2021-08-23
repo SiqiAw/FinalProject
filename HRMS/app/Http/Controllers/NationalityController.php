@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Nationality;
 use Session;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class NationalityController extends Controller
 {
@@ -20,11 +21,11 @@ class NationalityController extends Controller
             'name' => 'required',
         ]);
 
-        $nationalitys = new Nationality;
+        $nationalities = new Nationality;
 
-        $nationalitys->name = $request->input('name');
+        $nationalities->name = $request->input('name');
         
-        $nationalitys->save();
+        $nationalities->save();
 
         Session::flash('success', "Nationality added.");
         return redirect()->route('showNationality');
@@ -32,31 +33,31 @@ class NationalityController extends Controller
 
     function show()
     {
-        $nationalitys = Nationality::all();
-        return view('nationalitypage')->with('nationalitys', $nationalitys);
+        $nationalities = Nationality::paginate(10);
+        return view('nationalitypage')->with('nationalities', $nationalities);
     }
 
     function edit($id)
     {
-        $nationalitys = Nationality::find($id);
-        return view('editnationality', compact('nationalitys','id'));
+        $nationalities = Nationality::find($id);
+        return view('editnationality', compact('nationalities','id'));
     }
 
     function update()
     {
         $r=request();//retrive submited form data 
-        $nationalitys = Nationality::find($r->ID);
+        $nationalities = Nationality::find($r->ID);
 
-        $nationalitys->name=$r->name;
+        $nationalities->name=$r->name;
         
-        $nationalitys->save(); //run the SQL update statment
+        $nationalities->save(); //run the SQL update statment
         return redirect()->route('showNationality');
     }
 
     function delete($id)
     {
-        $nationalitys = Nationality::find($id);
-        $nationalitys->delete();
+        $nationalities = Nationality::find($id);
+        $nationalities->delete();
 
         Session::flash('success', "Nationality deleted.");
         return redirect()->route('showNationality');
@@ -66,10 +67,10 @@ class NationalityController extends Controller
     {
         $request = request();
         $keyword = $request->search;
-        $nationalitys = DB::table('nationalitys')
+        $nationalities = DB::table('nationalities')
         ->where('name', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('nationalitypage')->with('nationalitys', $nationalitys);
+        return view('nationalitypage')->with('nationalities', $nationalities);
     }
 }
