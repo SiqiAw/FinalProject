@@ -27,7 +27,7 @@ class BanknameController extends Controller
         
         $banknames->save();
 
-        Session::flash('success', "Bank name added.");
+        Session::flash('success', "Bank name successfully added.");
         return redirect()->route('showBankname');
     }
 
@@ -59,7 +59,7 @@ class BanknameController extends Controller
         $banknames = Bankname::find($id);
         $banknames->delete();
 
-        Session::flash('success', 'Bank Name deleted.');
+        Session::flash('success', 'Bank name successfully deleted.');
         return redirect()->route('showBankname');
     }
 

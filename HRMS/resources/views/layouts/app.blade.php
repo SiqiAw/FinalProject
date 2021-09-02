@@ -9,6 +9,7 @@
     <title>Human Resource Management System</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -91,13 +92,16 @@
                             <a href="{{ route('showNationality') }}">{{ __('Nationality') }}</a>
                         </li>
                         <li>
+                            <a href="{{ route('showState') }}">{{ __('State') }}</a>
+                        </li>
+                        <li>
                             <a href="{{ route('showCountry') }}">{{ __('Country') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('showBankname') }}">{{ __('Bank Name') }}</a>
                         </li>
                         <li>
-                            <a href="{{ route('showCert') }}">{{ __('Certificate') }}</a>
+                            <a href="{{ route('showQualif') }}">{{ __('Qualification') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('showMarital') }}">{{ __('Marital Status') }}</a>
@@ -113,6 +117,9 @@
                         </li>
                         <li>
                             <a href="{{ route('showWRKtime') }}">{{ __('Working Time') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showLeavetype') }}">{{ __('Leave Type') }}</a>
                         </li>
                     </ul>
                 </li>

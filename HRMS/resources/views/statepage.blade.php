@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-@include('addcert')
+@include('addstate')
 
     <div class="container">
 
         <div style="margin-bottom: 20px;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCert">
-                Add Certificate
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addState">
+                Add State
             </button>
             <div class="col-md-3" style="float:right;">
-                <form class="input-group" method="post" action="{{ route('searchCert') }}">
+                <form class="input-group" method="post" action="{{ route('searchState') }}">
                     @csrf
                     <input type="text" class="form-control" id="search" name="search" placeholder="search">
                     <button class="btn btn-dark" type="button">Search</button>
@@ -29,26 +29,26 @@
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Certificate Name</th>
+                    <th width="5%">ID</th>
+                    <th>State</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            @foreach($certificates as $certificate)
+            @foreach($states as $state)
             <tbody>
                 <tr>
-                    <td>{{ $certificate->id }}</td>
-                    <td>{{ $certificate->certificate_name }}</td>
+                    <td>{{ $state->id }}</td>
+                    <td>{{ $state->name }}</td>
                     
                     <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editCert{{$certificate->id}}">
-                            Edit
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editState{{$state->id}}">
+                            <i class="bi bi-pencil-square"></i>
                         </button>
-                        <a href="{{ route('deleteCert', ['id' => $certificate->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this certificate?')">
-                            Delete
+                        <a href="{{ route('deleteState', ['id' => $state->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this state?')">
+                            <i class="bi bi-trash-fill"></i>
                         </a>
                     </td>
-                    @include('editcert')
+                    @include('editstate')
                 </tr>
             </tbody>
             @endforeach
@@ -56,6 +56,6 @@
     </div>
 
     <div class="page_link" style="float: right;">
-        {{$certificates->links()}}
+        {{$states->links()}}
     </div>
 @endsection

@@ -45,10 +45,10 @@
                     
                     <td>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editJobtitle{{$jobtitle->id}}">
-                            Edit
+                            <i class="bi bi-pencil-square"></i>
                         </button>
                         <a href="{{ route('deleteJobtitle', ['id' => $jobtitle->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this Job title?')">
-                            Delete
+                            <i class="bi bi-trash-fill"></i>
                         </a>
                     </td>
                     @include('editjobtitle')

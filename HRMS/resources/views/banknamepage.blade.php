@@ -28,7 +28,7 @@
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+                    <th width="5%">ID</th>
                     <th>Bank Name</th>
                     <th>Action</th>
                 </tr>
@@ -41,10 +41,10 @@
                     
                     <td>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editBankname{{$bankname->id}}">
-                            Edit
+                            <i class="bi bi-pencil-square"></i>
                         </button>
                         <a href="{{ route('deleteBankname', ['id' => $bankname->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this bank?')">
-                            Delete
+                            <i class="bi bi-trash-fill"></i>
                         </a>
                     </td>
                     @include('editbankname')

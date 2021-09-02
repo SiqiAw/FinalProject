@@ -28,7 +28,7 @@
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+                    <th width="5%">ID</th>
                     <th>Marital Status</th>
                     <th>Action</th>
                 </tr>
@@ -41,10 +41,10 @@
                     
                     <td>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editMarital{{$statusmarital->id}}">
-                            Edit
+                            <i class="bi bi-pencil-square"></i>
                         </button>
                         <a href="{{ route('deleteMarital', ['id' => $statusmarital->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this certificate?')">
-                            Delete
+                            <i class="bi bi-trash-fill"></i>
                         </a>
                     </td>
                     @include('editmarital')

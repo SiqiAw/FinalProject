@@ -35,7 +35,7 @@
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+                    <th width="5%">ID</th>
                     <th>Event Name</th>
                     <th>Color</th>
                     <th>Start Date</th>
@@ -55,10 +55,10 @@
                     <td>
                     @if ($event->start_date > date('Y-m-d H:i:s'))
                         <button type="button" class="btn btn-success" data-toggle="modal" data-idUpdate="'.$event->id.'" data-target="#editEvent{{$event->id}}">
-                            Edit
+                            <i class="bi bi-pencil-square"></i>
                         </button>
                         <a href="{{ route('deleteEvent', ['id' => $event->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this event?')">
-                            Delete
+                            <i class="bi bi-trash-fill"></i>
                         </a>
                     @endif
                     </td>

@@ -1,4 +1,4 @@
-<div class="modal fade" id="addCert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addQualif" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -6,15 +6,15 @@
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form form method="post" action="{{ route('addCert') }}" enctype="multipart/form-data">
+        <form form method="post" action="{{ route('addQualif') }}" enctype="multipart/form-data">
             @csrf        
             <div class="mb-3">
-                <label for="">Certificate Name</label>
-                <input class="form-control" name="certificate_name" placeholder="Enter certificate name" />      
+                <label for="">Qualification Name</label>
+                <input class="form-control" name="name" placeholder="Enter qualification name" />      
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Add Certificate</button>
+                <button type="submit" class="btn btn-primary">Add</button>
             </div>
         </form>
       </div>

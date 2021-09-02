@@ -28,7 +28,7 @@
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+                    <th width="5%">ID</th>
                     <th>Nationality</th>
                     <th>Action</th>
                 </tr>
