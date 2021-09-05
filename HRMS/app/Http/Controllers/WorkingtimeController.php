@@ -77,7 +77,7 @@ class WorkingtimeController extends Controller
         ->where('start', 'like', '%' .$keyword. '%')
         ->orWhere('end', 'like', '%' .$keyword. '%')
         ->orWhere('duration', 'like', '%' .$keyword. '%')
-        ->get();
+        ->paginate(10);
 
         return view('workingtime')->with('workingtimes', $workingtimes);
     }

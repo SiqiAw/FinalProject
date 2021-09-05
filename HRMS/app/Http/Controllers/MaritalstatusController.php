@@ -69,7 +69,7 @@ class MaritalstatusController extends Controller
         $keyword = $request->search;
         $statusmaritals = DB::table('statusmaritals')
         ->where('maritalstatus_name', 'like', '%' .$keyword. '%')
-        ->get();
+        ->paginate(10);
 
         return view('maritalpage')->with('statusmaritals', $statusmaritals);
     }

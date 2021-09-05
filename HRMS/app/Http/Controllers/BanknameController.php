@@ -69,7 +69,7 @@ class BanknameController extends Controller
         $keyword = $request->search;
         $banknames = DB::table('banknames')
         ->where('name', 'like', '%' .$keyword. '%')
-        ->get();
+        ->paginate(10);
 
         return view('banknamepage')->with('banknames', $banknames);
     }

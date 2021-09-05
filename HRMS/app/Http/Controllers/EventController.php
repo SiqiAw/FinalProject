@@ -121,7 +121,7 @@ class EventController extends Controller
         $keyword = $request->search;
         $events = DB::table('events')
         ->where('eventname', 'like', '%' .$keyword. '%')
-        ->get();
+        ->paginate(10);
 
         return view('eventlist')->with('events', $events);
     }

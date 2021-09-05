@@ -12,7 +12,7 @@
                 <form class="input-group" method="post" action="{{ route('searchWRKtime') }}">
                     @csrf
                     <input type="text" class="form-control" id="search" name="search" placeholder="search">
-                    <button class="btn btn-dark" type="button">Search</button>
+                    <button class="btn btn-dark" type="submit">Search</button>
                 </form>
             </div>
         </div>

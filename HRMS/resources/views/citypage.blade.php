@@ -1,19 +1,18 @@
 @extends('layouts.app')
-
 @section('content')
-@include('addqualification')
+@include('addcity')
 
     <div class="container">
 
         <div style="margin-bottom: 20px;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQualif">
-                Add Qualification
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCity">
+                Add City
             </button>
             <div class="col-md-3" style="float:right;">
-                <form class="input-group" method="post" action="{{ route('searchQualif') }}">
+                <form class="input-group" method="post" action="{{ route('searchCity') }}">
                     @csrf
                     <input type="text" class="form-control" id="search" name="search" placeholder="search">
-                    <button class="btn btn-dark" type="button">Search</button>
+                    <button class="btn btn-dark" type="submit">Search</button>
                 </form>
             </div>
         </div>
@@ -30,27 +29,25 @@
             <thead class="table-dark">
                 <tr>
                     <th width="5%">ID</th>
-                    <th width="15%">Custom ID</th>
-                    <th>Qualification</th>
+                    <th>City Name</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            @foreach($qualifications as $qualification)
+            @foreach($cities as $city)
             <tbody>
                 <tr>
-                    <td>{{ $qualification->id }}</td>
-                    <td>{{ $qualification->custom_id }}</td>
-                    <td>{{ $qualification->name }}</td>
+                    <td>{{ $city->id }}</td>
+                    <td>{{ $city->name }}</td>
                     
                     <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editQualif{{$qualification->id}}">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editCity{{$city->id}}">
                             <i class="bi bi-pencil-square"></i>
                         </button>
-                        <a href="{{ route('deleteQualif', ['id' => $qualification->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this qualification?')">
+                        <a href="{{ route('deleteCity', ['id' => $city->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this city?')">
                             <i class="bi bi-trash-fill"></i>
                         </a>
                     </td>
-                    @include('editqualification')
+                    @include('editcity')
                 </tr>
             </tbody>
             @endforeach
@@ -58,6 +55,6 @@
     </div>
 
     <div class="page_link" style="float: right;">
-        {{$qualifications->links()}}
+        {{$cities->links()}}
     </div>
 @endsection

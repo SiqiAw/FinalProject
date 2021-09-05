@@ -8,4 +8,8 @@ class State extends Model
 {
     //
     protected $fillable = ['name'];
+
+    public function onlineapplicant() {
+        return $this->hasMany('App\Models\OnlineApplicant');
+    }
 }

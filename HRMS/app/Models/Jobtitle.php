@@ -12,4 +12,9 @@ class Jobtitle extends Model
     public function department(){
         return $this->belongsTo('App\Models\Department');
     }
+
+    public function onlineapplicant() {
+        return $this->hasMany('App\Models\OnlineApplicant');
+    }
+    
 }

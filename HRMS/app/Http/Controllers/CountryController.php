@@ -69,7 +69,7 @@ class CountryController extends Controller
         $keyword = $request->search;
         $countries = DB::table('countries')
         ->where('name', 'like', '%' .$keyword. '%')
-        ->get();
+        ->paginate(10);
 
         return view('countrypage')->with('countries', $countries);
     }

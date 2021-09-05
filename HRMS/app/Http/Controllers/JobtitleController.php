@@ -19,7 +19,7 @@ class JobtitleController extends Controller
     function store(Request $request)
     {
         
-        $addDepartment=Jobtitle::create([    //step 3 bind data
+        $addDepartment = Jobtitle::create([    //step 3 bind data
             'id'=>$request->ID, //add on 
             'jobtitle_name'=>$request->jobtitle_name, //fullname from HTML
             'department_id'=>$request->department,
@@ -71,14 +71,16 @@ class JobtitleController extends Controller
     
     function search()
     {
-        // $request = request();
-        // $keyword = $request->search;
-        // $jobtitles = DB::table('jobtitles')
-        // ->where('jobtitles.jobtitle_name', 'like', '%' .$keyword. '%')
-        // ->orWhere('jobtitles.department_id', 'like', '%' .$keyword. '%')
-        // ->orWhere('jobtitles.description', 'like', '%' .$keyword. '%')
-        // ->get();
+        /* $request = request();
+        $keyword = $request->search;
+        $jobtitles = DB::table('jobtitles')
+        ->leftjoin('departments', 'departments.id', '=', 'jobtitles.department_id')
+        ->select('departments.department_name as deptname', 'departments.id as catid', 'jobtitles.*')
+        ->where('jobtitles.jobtitle_name', 'like', '%' .$keyword. '%')
+        ->orWhere('jobtitles.department_id', 'like', '%' .$keyword. '%')
+        ->orWhere('jobtitles.description', 'like', '%' .$keyword. '%')
+        ->get();
 
-        // return view('jobtitle')->with('jobtitles', $jobtitles);
+        return view('jobtitle')->with('jobtitles', $jobtitles); */
     }
 }

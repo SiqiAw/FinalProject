@@ -21,11 +21,9 @@ class DepartmentController extends Controller
             'department_name' => 'required',
         ]);
 
-        $departments = new Department;
-
-        $departments->department_name = $request->input('department_name');
-        
-        $departments->save();
+        $addDepartment = Department::create([
+            'department_name' => $request->department_name
+        ]);
 
         Session::flash('success', "Department added.");
         return redirect()->route('showDept');
@@ -69,7 +67,7 @@ class DepartmentController extends Controller
         $keyword = $request->search;
         $departments = DB::table('departments')
         ->where('department_name', 'like', '%' . $keyword . '%')
-        ->get();
+        ->paginate(10);
         
         return view('departmentpage')->with('departments', $departments);
     }

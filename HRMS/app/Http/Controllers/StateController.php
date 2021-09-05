@@ -69,7 +69,7 @@ class StateController extends Controller
         $keyword = $request->search;
         $states = DB::table('states')
         ->where('name', 'like', '%' .$keyword. '%')
-        ->get();
+        ->paginate(10);
 
         return view('statepage')->with('states', $states);
     }

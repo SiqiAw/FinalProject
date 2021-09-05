@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQualificationsTable extends Migration
+class CreateCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateQualificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('qualifications', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('custom_id');
             $table->string('name');
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ class CreateQualificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qualifications');
+        Schema::dropIfExists('cities');
     }
 }

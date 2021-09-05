@@ -11,6 +11,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\BanknameController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\LeavetypeController;
 use App\Http\Controllers\OnlineApplicantController;
 
@@ -123,6 +124,15 @@ Route::post('/updatestate',[StateController::class,'update'])->name('updateState
 Route::get('/deletestate/{id}',[StateController::class,'delete'])->name('deleteState');
 Route::post('/searchstate',[StateController::class,'search'])->name('searchState');
 
+// city setting route
+Route::get('/city',[CityController::class,'show'])->name('showCity');
+Route::get('/city/addcity',[CityController::class,'create'])->name('showAddCity');
+Route::post('/city/store',[CityController::class,'store'])->name('addCity');
+Route::get('/editcity/{id}',[CityController::class,'edit'])->name('editCity');
+Route::post('/updatecity',[CityController::class,'update'])->name('updateCity');
+Route::get('/deletecity/{id}',[CityController::class,'delete'])->name('deleteCity');
+Route::post('/searchcity',[CityController::class,'search'])->name('searchCity');
+
 // leavetype setting route
 Route::get('/leavetype',[LeavetypeController::class,'show'])->name('showLeavetype');
 Route::get('/leavetype/addleavetype',[LeavetypeController::class,'create'])->name('showAddLeavetype');
@@ -134,4 +144,9 @@ Route::post('/searchleavetype',[LeavetypeController::class,'search'])->name('sea
 
 
 // online applicant system
-Route::get('/aboutme',[OnlineApplicantController::class,'showaboutme'])->name('showAboutMe');
+Route::get('/onlinerecruitment',[OnlineApplicantController::class,'show'])->name('showOnlineRecruit');
+Route::post('/onlinerecruitment/store',[OnlineApplicantController::class,'store'])->name('addApplicant');
+//view??
+Route::get('/recruitmentadmin',[OnlineApplicantController::class,'adminshow'])->name('admin.show');
+Route::get('/adminview/{id}',[OnlineApplicantController::class,'view'])->name('admin.view');
+Route::get('/adminview/{id}/download',[OnlineApplicantController::class,'download'])->name('resume.download');

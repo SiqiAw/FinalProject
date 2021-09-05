@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Models\Qualification;
 use Session;
 use DB;
@@ -15,7 +16,21 @@ class QualificationController extends Controller
         return view('addqualification');
     }
 
-    function store(Request $request)
+    // function store(Request $request)
+    // {
+    //     $name = $request -> name;
+
+    //     $generator = Helper::IDGenerator(new Qualification, 'custom_id', 5, 'KHS');
+    //     $khmer = new Qualification;
+    //     $khmer -> custom_id = $generator;
+    //     $khmer -> name = $request->input('name');
+
+    //     $khmer->save();
+    //     Session::flash('success', "Qualification successfully added.");
+    //     return redirect()->route('showQualif');
+    // }
+
+    public function save(Request $request) 
     {
         $this->validate($request,[
             'name' => 'required',
