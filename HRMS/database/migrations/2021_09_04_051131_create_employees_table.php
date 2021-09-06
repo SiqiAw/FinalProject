@@ -15,7 +15,7 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('employee_ID');
+            $table->string('employee_ID')->nullable();
             $table->string('ic')->unique();
             $table->string('employee_Name',60);
             $table->string('image');
@@ -27,20 +27,20 @@ class CreateEmployeesTable extends Migration
             $table->text('address');
             $table->string('contact_number');
             $table->string('email');
-            $table->string('department');
-            $table->string('jobtitle');
-            $table->double('salary')->unsigned();
-            $table->date('start_Date');
-            $table->date('end_Date');
+            $table->string('department')->nullable();
+            $table->string('jobtitle')->nullable();
+            $table->double('salary')->unsigned()->nullable();
+            $table->date('start_Date')->nullable();
+            $table->date('end_Date')->nullable();
             $table->string('emergency_Name');
             $table->string('emergency_Contact_Number');
             $table->string('document');
-            $table->string('employment');
+            $table->string('employment')->nullable();
             $table->string('marital_status');
-            $table->string('leave_grade');
-            $table->string('employee_grade');
-            $table->integer('epf_account_number');
-            $table->time('workingSchedule');
+            $table->string('leave_grade')->nullable();
+            $table->string('employee_grade')->nullable();
+            $table->integer('epf_account_number')->nullable();
+            $table->time('workingSchedule')->nullable();
             $table->timestamps();
         });
     }

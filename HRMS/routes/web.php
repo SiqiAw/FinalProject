@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\QualificationController;
@@ -14,12 +16,34 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\LeavetypeController;
 use App\Http\Controllers\OnlineApplicantController;
+use App\Http\Controllers\EmployeeController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
+
+Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
+Route::get('/login/user', [LoginController::class,'showUserLoginForm']);
+Route::get('/register/admin', [RegisterController::class,'showAdminRegisterForm']);
+Route::get('/register/user', [RegisterController::class,'showUserRegisterForm']);
+
+Route::post('/login/admin', [LoginController::class,'adminLogin']);
+Route::post('/login/user', [LoginController::class,'userLogin']);
+Route::post('/register/admin', [RegisterController::class,'createAdmin']);
+Route::post('/register/user', [RegisterController::class,'createUser']);
+
+Route::group(['middleware' => 'auth:user'], function () {
+    Route::view('/user', 'user');
+});
+
+Route::group(['middleware' => 'auth:admin'], function () {
+    
+    Route::view('/admin', 'admin');
+});
+
+Route::get('logout', [LoginController::class,'logout']);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -146,7 +170,10 @@ Route::post('/searchleavetype',[LeavetypeController::class,'search'])->name('sea
 // online applicant system
 Route::get('/onlinerecruitment',[OnlineApplicantController::class,'show'])->name('showOnlineRecruit');
 Route::post('/onlinerecruitment/store',[OnlineApplicantController::class,'store'])->name('addApplicant');
-//view??
 Route::get('/recruitmentadmin',[OnlineApplicantController::class,'adminshow'])->name('admin.show');
-Route::get('/adminview/{id}',[OnlineApplicantController::class,'view'])->name('admin.view');
+Route::get('/adminview/{id}', [OnlineApplicantController::class,'view'])->name('admin.view');
 Route::get('/adminview/{id}/download',[OnlineApplicantController::class,'download'])->name('resume.download');
+Route::get('/employee/{id}',[OnlineApplicantController::class,'moverecord'])->name('move.record');
+
+// employee show
+Route::get('/employee',[EmployeeController::class,'show'])->name('showEmployee');

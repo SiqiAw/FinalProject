@@ -11,6 +11,7 @@ use App\Models\Country;
 use App\Models\City;
 use App\Models\State;
 use App\Models\Jobtitle;
+use App\Models\Employee;
 use Session;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -67,13 +68,12 @@ class OnlineApplicantController extends Controller
     function adminshow()
     {
         $onlineapplicants = OnlineApplicant::paginate(10);
-        return view('recruitmentadmin')->with('onlineapplicants', $onlineapplicants);
+        return view('adminrecruit')->with('onlineapplicants', $onlineapplicants);
     }
 
     function view($id)
     {
         $onlineapplicants = OnlineApplicant::all()->where('id', $id);
-        //return dd($onlineapplicants);
         return view('recruitmentdetail')->with('onlineapplicants', $onlineapplicants);
     }
 
@@ -82,6 +82,50 @@ class OnlineApplicantController extends Controller
         $onlineapplicants = OnlineApplicant::where('id', $id)->firstOrFail();
         $pathToFile = public_path('documents/'. $onlineapplicants->document);
         return response()->download($pathToFile);
+    }
+
+    function moverecord(Request $request, $id)
+    {
+        $onlineapplicants = OnlineApplicant::where('id',$id)->first();
+
+        $OAname = $onlineapplicants -> name;
+        $OAic = $onlineapplicants -> ic;
+        $OAdob = $onlineapplicants -> dob;
+        $OAgender = $onlineapplicants -> gender;
+        $OAmarital = $onlineapplicants -> marital_status;
+        $OArace = $onlineapplicants -> race;
+        $OAreligion = $onlineapplicants -> religion;
+        $OAnation = $onlineapplicants -> nationality;
+        $OAemail = $onlineapplicants -> email;
+        $OAphone = $onlineapplicants -> phone_num;
+        $OAaddress = $onlineapplicants -> address;
+        $OAcountry = $onlineapplicants ->country;
+        $OAdocument = $onlineapplicants -> document;
+        $OAimage = $onlineapplicants -> image;
+        $OAemergency_name = $onlineapplicants -> emergency_contact_name;
+        $OAemergency_num = $onlineapplicants -> emergency_contact_number;
+
+        $addEmployees = Employee::create([
+            'ic' => $request = $OAic,
+            'employee_Name' => $request = $OAname,
+            'image' => $request = $OAimage,
+            'gender' => $request = $OAgender,
+            'date_of_birth' => $request = $OAdob,
+            'race' => $request = $OArace,
+            'country' => $request = $OAcountry,
+            'national' => $request = $OAnation,
+            'address' => $request = $OAaddress,
+            'contact_number' => $request = $OAphone,
+            'email' => $request = $OAemail,
+            'emergency_Name' => $request = $OAemergency_name,
+            'emergency_Contact_Number' => $request = $OAemergency_num,
+            'document' => $request = $OAdocument,
+            'marital_status' => $request = $OAmarital,
+        ]);
+
+        $onlineapplicants->delete();
+
+        return view('employeepage')->with("employees", Employee::all());
     }
 
     

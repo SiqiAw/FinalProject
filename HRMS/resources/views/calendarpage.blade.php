@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.hrms')
 
 @section('css')
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>   
