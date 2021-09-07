@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Models\Admin;
+use App\Models\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -41,7 +42,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
         $this->middleware('guest:admin');
-        $this->middleware('guest:user');
+        $this->middleware('guest:employee');
     }
 
     /**
@@ -70,9 +71,23 @@ class RegisterController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showUserRegisterForm()
+    public function showEmployeeRegisterForm()
     {
-        return view('auth.register', ['url' => 'user']);
+        return view('auth.register', ['url' => 'employee']);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return mixed
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 
     /**
@@ -96,15 +111,15 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function createUser(Request $request)
+    protected function createEmployee(Request $request)
     {
         $this->validator($request->all())->validate();
-        User::create([
+        Employee::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('login/user');
+        return redirect()->intended('login/employee');
     }
 
 }

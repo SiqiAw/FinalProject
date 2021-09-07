@@ -33,13 +33,13 @@ class EventController extends Controller
         }
         
         $calendar = Calendar::addEvents($events);
-        return view('calendarpage', compact('calendar'));
+        return view('admin.calendarpage', compact('calendar'));
 
     }
 
     public function display()
     {
-        return view('addevent');
+        return view('admin.addevent');
     }
 
     public function store(Request $request)
@@ -68,19 +68,19 @@ class EventController extends Controller
     public function show()
     {
         $events = Event::paginate(10);
-        return view('eventlist')->with('events', $events);
+        return view('admin.eventlist')->with('events', $events);
     }
 
     public function edit($id)
     {
         $events = Event::find($id);
-        return view('editevent', compact('events','id'));
+        return view('admin.editevent', compact('events','id'));
     }    
 
     public function update()
     {
-        $r=request();//retrive submited form data
-        $events = Event::where('id', $r->get('id')) //get the record based on product ID
+        $r=request();
+        $events = Event::where('id', $r->get('id')) 
         ->update([
             'eventname' => $r->get('eventname'),
             'color' => $r->get('color'),
@@ -112,7 +112,7 @@ class EventController extends Controller
         ->orWhere('end_date', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('eventlist')->with('events', $events);
+        return view('admin.eventlist')->with('events', $events);
     }
 
     public function search()
@@ -123,6 +123,6 @@ class EventController extends Controller
         ->where('eventname', 'like', '%' .$keyword. '%')
         ->paginate(10);
 
-        return view('eventlist')->with('events', $events);
+        return view('admin.eventlist')->with('events', $events);
     }
 }

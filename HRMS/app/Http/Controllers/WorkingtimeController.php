@@ -12,7 +12,7 @@ class WorkingtimeController extends Controller
 {
     function create()
     {
-        return view('addworkingtime');
+        return view('admin.addworkingtime');
     }
 
     function store(Request $request)
@@ -38,25 +38,25 @@ class WorkingtimeController extends Controller
     function show()
     {
         $workingtimes = Workingtime::paginate(10);
-        return view('workingtime')->with('workingtimes', $workingtimes);
+        return view('admin.workingtime')->with('workingtimes', $workingtimes);
     }
 
     function edit($id)
     {
         $workingtimes = Workingtime::find($id);
-        return view('wokingtime', compact('workingtimes','id'));
+        return view('admin.wokingtime', compact('workingtimes','id'));
     }
 
     function update()
     {
-        $r=request();//retrive submited form data 
+        $r=request(); 
         $workingtimes = Workingtime::find($r->ID);
 
         $workingtimes->start=$r->start;
         $workingtimes->end=$r->end;
         $workingtimes->duration=$r->duration;
         
-        $workingtimes->save(); //run the SQL update statment
+        $workingtimes->save(); 
         return redirect()->route('showWRKtime');
     }
 
@@ -79,6 +79,6 @@ class WorkingtimeController extends Controller
         ->orWhere('duration', 'like', '%' .$keyword. '%')
         ->paginate(10);
 
-        return view('workingtime')->with('workingtimes', $workingtimes);
+        return view('admin.workingtime')->with('workingtimes', $workingtimes);
     }
 }

@@ -38,7 +38,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:admin')->except('logout');
-        $this->middleware('guest:user')->except('logout');
+        $this->middleware('guest:employee')->except('logout');
     }
 
     public function showAdminLoginForm()
@@ -55,14 +55,14 @@ class LoginController extends Controller
 
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->intended('/admin');
+            return redirect()->intended('/admin.admin');
         }
         return back()->withInput($request->only('email', 'remember'));
     }
 
      public function showUserLoginForm()
     {
-        return view('auth.login', ['url' => 'user']);
+        return view('auth.login', ['url' => 'employee']);
     }
 
     public function userLogin(Request $request)
@@ -74,7 +74,7 @@ class LoginController extends Controller
 
         if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->intended('/user');
+            return redirect()->intended('/employee.employee');
         }
         return back()->withInput($request->only('email', 'remember'));
     }

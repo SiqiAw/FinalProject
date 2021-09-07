@@ -25,22 +25,22 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
-Route::get('/login/user', [LoginController::class,'showUserLoginForm']);
+Route::get('/login/employee', [LoginController::class,'showEmployeeLoginForm']);
 Route::get('/register/admin', [RegisterController::class,'showAdminRegisterForm']);
-Route::get('/register/user', [RegisterController::class,'showUserRegisterForm']);
+Route::get('/register/employee', [RegisterController::class,'showEmployeeRegisterForm']);
 
 Route::post('/login/admin', [LoginController::class,'adminLogin']);
-Route::post('/login/user', [LoginController::class,'userLogin']);
+Route::post('/login/employee', [LoginController::class,'employeeLogin']);
 Route::post('/register/admin', [RegisterController::class,'createAdmin']);
-Route::post('/register/user', [RegisterController::class,'createUser']);
+Route::post('/register/employee', [RegisterController::class,'createEmployee']);
 
-Route::group(['middleware' => 'auth:user'], function () {
-    Route::view('/user', 'user');
+Route::group(['middleware' => 'auth:employee'], function () {
+    Route::view('employee.employee', 'employee');
 });
 
 Route::group(['middleware' => 'auth:admin'], function () {
     
-    Route::view('/admin', 'admin');
+    Route::view('admin.admin', 'admin');
 });
 
 Route::get('logout', [LoginController::class,'logout']);
@@ -174,6 +174,7 @@ Route::get('/recruitmentadmin',[OnlineApplicantController::class,'adminshow'])->
 Route::get('/adminview/{id}', [OnlineApplicantController::class,'view'])->name('admin.view');
 Route::get('/adminview/{id}/download',[OnlineApplicantController::class,'download'])->name('resume.download');
 Route::get('/employee/{id}',[OnlineApplicantController::class,'moverecord'])->name('move.record');
+Route::post('onlinerecruitment/search',[OnlineApplicantController::class,'search'])->name('search.applicant');
 
 // employee show
 Route::get('/employee',[EmployeeController::class,'show'])->name('showEmployee');

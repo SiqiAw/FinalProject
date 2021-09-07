@@ -9,6 +9,6 @@ class EmployeeController extends Controller
 {
     function show()
     {
-        return view('employeepage')->with("employees", Employee::all());
+        return view('admin.employeepage')->with("employees", Employee::all());
     }
 }

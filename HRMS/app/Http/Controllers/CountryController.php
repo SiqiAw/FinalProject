@@ -12,7 +12,7 @@ class CountryController extends Controller
 {
     function create()
     {
-        return view('addcountry');
+        return view('admin.addcountry');
     }
 
     function store(Request $request)
@@ -34,23 +34,23 @@ class CountryController extends Controller
     function show()
     {
         $countries = Country::paginate(10);
-        return view('countrypage')->with('countries', $countries);
+        return view('admin.countrypage')->with('countries', $countries);
     }
 
     function edit($id)
     {
         $countries = Country::find($id);
-        return view('editcountry', compact('countries','id'));
+        return view('admin.editcountry', compact('countries','id'));
     }
 
     function update()
     {
-        $r=request();//retrive submited form data 
+        $r=request();
         $countries = Country::find($r->ID);
 
         $countries->name=$r->name;
         
-        $countries->save(); //run the SQL update statment
+        $countries->save();
         return redirect()->route('showCountry');
     }
 
@@ -71,6 +71,6 @@ class CountryController extends Controller
         ->where('name', 'like', '%' .$keyword. '%')
         ->paginate(10);
 
-        return view('countrypage')->with('countries', $countries);
+        return view('admin.countrypage')->with('countries', $countries);
     }
 }

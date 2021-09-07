@@ -21,7 +21,7 @@ class OnlineApplicantController extends Controller
     //
     function show()
     {
-        return view('onlinerecruitment')->with("countries", Country::all())
+        return view('guest.onlinerecruitment')->with("countries", Country::all())
                                         ->with("cities", City::all())
                                         ->with("states", State::all())
                                         ->with("jobtitles", Jobtitle::all());
@@ -62,19 +62,19 @@ class OnlineApplicantController extends Controller
             'relation_emergency' => $request -> Erelation,
         ]);
         
-        return view('recruitment');
+        return view('guest.recruitment');
     }
 
     function adminshow()
     {
         $onlineapplicants = OnlineApplicant::paginate(10);
-        return view('adminrecruit')->with('onlineapplicants', $onlineapplicants);
+        return view('admin.adminrecruit')->with('onlineapplicants', $onlineapplicants);
     }
 
     function view($id)
     {
         $onlineapplicants = OnlineApplicant::all()->where('id', $id);
-        return view('recruitmentdetail')->with('onlineapplicants', $onlineapplicants);
+        return view('admin.recruitmentdetail')->with('onlineapplicants', $onlineapplicants);
     }
 
     function download($id)
@@ -125,7 +125,19 @@ class OnlineApplicantController extends Controller
 
         $onlineapplicants->delete();
 
-        return view('employeepage')->with("employees", Employee::all());
+        return view('admin.employeepage')->with("employees", Employee::all());
+    }
+    
+    function search()
+    {
+        $request = request();
+        $keyword = $request->search;
+        $onlineapplicants = DB::table('online_applicants')
+        ->where('name', 'like', '%' . $keyword . '%')
+        ->orWhere('gender', 'like', '%' . $keyword . '%')
+        ->paginate(10);
+        
+        return view('admin.adminrecruit')->with('onlineapplicants', $onlineapplicants);
     }
 
     

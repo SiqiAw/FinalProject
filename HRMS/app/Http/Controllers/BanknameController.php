@@ -12,7 +12,7 @@ class BanknameController extends Controller
 {
     function create()
     {
-        return view('addbankname');
+        return view('admin.addbankname');
     }
 
     function store(Request $request)
@@ -27,30 +27,30 @@ class BanknameController extends Controller
         
         $banknames->save();
 
-        Session::flash('success', "Bank name successfully added.");
+        Session::flash('success', "Bank successfully added.");
         return redirect()->route('showBankname');
     }
 
     function show()
     {
         $banknames = Bankname::paginate(10);
-        return view('banknamepage')->with('banknames', $banknames);
+        return view('admin.banknamepage')->with('banknames', $banknames);
     }
 
     function edit($id)
     {
         $banknames = Bankname::find($id);
-        return view('editbankname', compact('banknames','id'));
+        return view('admin.editbankname', compact('banknames','id'));
     }
 
     function update()
     {
-        $r=request();//retrive submited form data 
+        $r=request();
         $banknames = Bankname::find($r->ID);
 
         $banknames->name=$r->name;
         
-        $banknames->save(); //run the SQL update statment
+        $banknames->save();
         return redirect()->route('showBankname');
     }
 
@@ -59,7 +59,7 @@ class BanknameController extends Controller
         $banknames = Bankname::find($id);
         $banknames->delete();
 
-        Session::flash('success', 'Bank name successfully deleted.');
+        Session::flash('success', 'Bank successfully deleted.');
         return redirect()->route('showBankname');
     }
 
@@ -71,6 +71,6 @@ class BanknameController extends Controller
         ->where('name', 'like', '%' .$keyword. '%')
         ->paginate(10);
 
-        return view('banknamepage')->with('banknames', $banknames);
+        return view('admin.banknamepage')->with('banknames', $banknames);
     }
 }

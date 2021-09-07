@@ -13,14 +13,14 @@ class EmploymentController extends Controller
 {
     function create()
     {
-        return view('addemployment')->with('workingtimes', Workingtime::all());
+        return view('admin.addemployment')->with('workingtimes', Workingtime::all());
     }
 
     function store(Request $request)
     {
-        $addWorkingtime=Employment::create([    //step 3 bind data
-            'id'=>$request->ID, //add on 
-            'employment_name'=>$request->employment_name, //fullname from HTML
+        $addWorkingtime=Employment::create([    
+            'id'=>$request->ID,  
+            'employment_name'=>$request->employment_name, 
             'workingtime_id'=>$request->worktime,
         ]);
         
@@ -31,27 +31,27 @@ class EmploymentController extends Controller
     function show()
     {
         $employments = Employment::paginate(10);
-        return view('employmentpage')->with('employments', $employments)
-                                     ->with('workingtimes', Workingtime::all());
+        return view('admin.employmentpage')->with('employments', $employments)
+                                           ->with('workingtimes', Workingtime::all());
     }
 
     function edit($id)
     {
         $employments = Employment::all()->where('id',$id);
 
-        return view('employmentpage')->with('employments', $employments)
-                                    ->with('wokingtimes', Workingtime::all());
+        return view('admin.employmentpage')->with('employments', $employments)
+                                           ->with('wokingtimes', Workingtime::all());
     }
 
     function update()
     {
-        $r=request();//retrive submited form data 
+        $r=request();
         $employments = Employment::find($r->ID);
 
         $employments->employment_name=$r->employment_name;
         $employments->workingtime_id=$r->worktime;
         
-        $employments->save(); //run the SQL update statment
+        $employments->save();
         return redirect()->route('showEmployment');
     }
 

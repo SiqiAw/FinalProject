@@ -13,7 +13,7 @@ class JobtitleController extends Controller
 {
     function create()
     {
-        return view('addjobtitle')->with('departments', Department::all());
+        return view('admin.addjobtitle')->with('departments', Department::all());
     }
 
     function store(Request $request)
@@ -34,16 +34,16 @@ class JobtitleController extends Controller
     function show()
     {
         $jobtitles = Jobtitle::paginate(10);
-        return view('jobtitle')->with('jobtitles', $jobtitles)
-                               ->with('departments', Department::all());
+        return view('admin.jobtitle')->with('jobtitles', $jobtitles)
+                                     ->with('departments', Department::all());
     }
 
     function edit($id)
     {
         $jobtitles = Jobtitle::all()->where('id',$id);
 
-        return view('jobtitle')->with('jobtitles',$jobtitles)
-                               ->with('departments', Department::all());
+        return view('admin.jobtitle')->with('jobtitles',$jobtitles)
+                                     ->with('departments', Department::all());
 
     }
 
@@ -56,7 +56,7 @@ class JobtitleController extends Controller
         $jobtitles->department_id=$r->department;
         $jobtitles->description=$r->description;
         
-        $jobtitles->save(); //run the SQL update statment
+        $jobtitles->save();
         return redirect()->route('showJobtitle');
     }
 
