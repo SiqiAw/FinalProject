@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class OnlineApplicant extends Model
+class OnlineApplicant extends Authenticatable
 {
+    use Notifiable;
+    
     protected $fillable = [
         'name','ic','dob','gender','marital_status',
         'race','religion','nationality','email','phone_num',

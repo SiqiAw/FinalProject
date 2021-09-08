@@ -17,6 +17,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\LeavetypeController;
 use App\Http\Controllers\OnlineApplicantController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\TestController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -175,6 +176,14 @@ Route::get('/adminview/{id}', [OnlineApplicantController::class,'view'])->name('
 Route::get('/adminview/{id}/download',[OnlineApplicantController::class,'download'])->name('resume.download');
 Route::get('/employee/{id}',[OnlineApplicantController::class,'moverecord'])->name('move.record');
 Route::post('onlinerecruitment/search',[OnlineApplicantController::class,'search'])->name('search.applicant');
+//notification
+Route::get('/onlinerecruitment/{id}/success',[OnlineApplicantController::class,'sendSuccessful'])->name('send.success');
+Route::get('/onlinerecruitment/{id}/fail',[OnlineApplicantController::class,'sendUnfortunately'])->name('send.fail');
 
 // employee show
 Route::get('/employee',[EmployeeController::class,'show'])->name('showEmployee');
+
+// test/text
+Route::get('/test',[TestController::class,'show'])->name('showTest');
+Route::get('/test/addtest',[TestController::class,'create'])->name('showAddTest');
+Route::post('/addtest/store',[TestController::class,'store'])->name('storeTest');

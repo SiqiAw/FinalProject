@@ -53,17 +53,22 @@
                     </div>
                     <div class="search_select_box form-group col-md-6">
                         <label for="" class="form-label">Race</label> <br/>
-                        <select id="race" name="race" data-live-search="true">
+                        <select id="race" name="race" data-live-search="true"
+                        onchange="if (this.value=='Others'){this.form['othersrace'].style.visibility='visible'}
+                        else {this.form['othersrace'].style.visibility='hidden'};">
                         <option value="" selected>-- Select Race --</option>
                         <option value="Malay">Malay</option>
                         <option value="Chinese">Chinese</option>
                         <option value="Indian">Indian</option>
                         <option value="Others">Others</option>
                         </select>
+                        <input type="text" name="othersrace" id="race" style="visibility:hidden; margin-top: 5px"/>
                     </div>
                     <div class="search_select_box form-group col-md-6">
                         <label for="" class="form-label">Religion</label> <br/>
-                        <select id="religion" name="religion" data-live-search="true">
+                        <select id="religion" name="religion" data-live-search="true"
+                        onchange="if (this.value=='Others'){this.form['others'].style.visibility='visible'}
+                        else {this.form['others'].style.visibility='hidden'};">
                         <option value="" selected>-- Select Religion --</option>
                         <option value="Islam">Islam</option>
                         <option value="Buddhism">Buddhism</option>
@@ -71,6 +76,7 @@
                         <option value="Hinduism">Hinduism</option>
                         <option value="Others">Others</option>
                         </select>
+                        <input type="text" name="others" id="religion" style="visibility:hidden; margin-top: 5px"/>
                     </div>
                     <div class="search_select_box form-group col-md-6">
                         <label for="" class="form-label">Nationality</label>
@@ -138,7 +144,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="" class="form-label">Expected Salary (RM)</label>
-                        <input type="number" class="form-control" id="Esalary" name="Esalary">
+                        <input type="text" class="form-control" id="Esalary" name="Esalary">
                     </div>
                 </div>
             </div>

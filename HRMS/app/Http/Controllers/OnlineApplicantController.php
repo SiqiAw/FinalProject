@@ -15,6 +15,9 @@ use App\Models\Employee;
 use Session;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Notification;
+use App\Notifications\Congratulation;
+use App\Notifications\Unfortunately;
 
 class OnlineApplicantController extends Controller
 {
@@ -22,9 +25,9 @@ class OnlineApplicantController extends Controller
     function show()
     {
         return view('guest.onlinerecruitment')->with("countries", Country::all())
-                                        ->with("cities", City::all())
-                                        ->with("states", State::all())
-                                        ->with("jobtitles", Jobtitle::all());
+                                              ->with("cities", City::all())
+                                              ->with("states", State::all())
+                                              ->with("jobtitles", Jobtitle::all());
     }
 
     function store(Request $request)
@@ -69,6 +72,7 @@ class OnlineApplicantController extends Controller
     {
         $onlineapplicants = OnlineApplicant::paginate(10);
         return view('admin.adminrecruit')->with('onlineapplicants', $onlineapplicants);
+        
     }
 
     function view($id)
@@ -87,7 +91,7 @@ class OnlineApplicantController extends Controller
     function moverecord(Request $request, $id)
     {
         $onlineapplicants = OnlineApplicant::where('id',$id)->first();
-
+        
         $OAname = $onlineapplicants -> name;
         $OAic = $onlineapplicants -> ic;
         $OAdob = $onlineapplicants -> dob;
@@ -140,5 +144,43 @@ class OnlineApplicantController extends Controller
         return view('admin.adminrecruit')->with('onlineapplicants', $onlineapplicants);
     }
 
+    public function sendSuccessful($id)
+    {
+        $onlineapplicants = OnlineApplicant::where('id',$id)->first();
+
+        $successdetails = [
+
+            'greeting' => 'Hi,',
+            'body'=>'Congratulations on being included in our interview list. 
+                    Our human resources department will 
+                    contact you as soon as possible. Thank you!',
+            'lastline'=>'Hope you have a nice day!',
+
+        ];
+
+        Notification::send($onlineapplicants, new Congratulation($successdetails));
+
+        Session::flash('success', 'Email successfully send.');
+        return redirect()->route('admin.show');
+    }
+
+    public function sendUnfortunately($id)
+    {
+        $onlineapplicants = OnlineApplicant::where('id',$id)->first();
+
+        $faildetails = [
+
+            'greeting' => 'Hi,',
+            'body'=>'We regret to inform you that you were not included in the interview list. 
+                    I hope you don’t get discouraged and keep going!',
+            'lastline'=>'Hope you have a nice day!',
+
+        ];
+
+        Notification::send($onlineapplicants, new Unfortunately($faildetails));
+
+        Session::flash('success', 'Email successfully send.');
+        return redirect()->route('admin.show');
+    }
     
 }

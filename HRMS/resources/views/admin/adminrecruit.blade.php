@@ -3,7 +3,7 @@
 
     <div class="container">
 
-        <div>
+        <div style="margin-bottom: 20px;">
             <div class="col-md-3" style="float:right; margin-bottom: 10px">
                 <form class="input-group" method="post" action="{{ route('search.applicant') }}">
                     @csrf
@@ -49,10 +49,10 @@
                         <a href="{{ route('admin.view', ['id' => $onlineapplicant->id]) }}" class="btn btn-primary">
                             <i class="bi bi-eye"></i>
                         </a>
-                        <a href="" class="btn btn-success">
+                        <a href="{{ route('send.success', ['id' => $onlineapplicant->id]) }}" class="btn btn-success">
                             <i class="bi bi-check-lg"></i>
                         </a>
-                        <a href="" class="btn btn-danger">
+                        <a href="{{ route('send.fail', ['id' => $onlineapplicant->id]) }}" class="btn btn-danger">
                             <i class="bi bi-x-lg"></i>
                         </a>
                         <a href="{{ route('move.record', ['id' => $onlineapplicant->id]) }}" class="btn btn-warning">

@@ -23,7 +23,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">HRMS
             <button type="button" id="sidebarCollapse" class="btn btn-info" style="margin-left: 70%;">
-                <i class="fas fa-bars"></i>
+                <i class="bi bi-list"></i>
             </button></a>
 
             <ul class="navbar-nav">

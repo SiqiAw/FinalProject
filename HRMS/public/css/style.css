@@ -128,7 +128,7 @@ a:focus {
   border: 1px solid #ccc;
   background-color: #7386D5;
   width: 20%;
-  min-height: 130vh;
+  min-height: 140vh;
 }
 
 .tab button {
@@ -159,7 +159,7 @@ a:focus {
   border: 1px solid #ccc;
   width: 80%;
   border-left: none;
-  min-height: 130vh;
+  min-height: 140vh;
   border-top-right-radius: 3%;
   border-bottom-right-radius: 3%;
 }

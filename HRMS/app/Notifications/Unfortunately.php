@@ -3,24 +3,24 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class SuccessNotice extends Notification
+class Unfortunately extends Notification
 {
     use Queueable;
 
-    private $details;
+    private $faildetails;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($faildetails)
     {
-        $this->details=$details;
+        $this -> faildetails = $faildetails;
     }
 
     /**
@@ -43,10 +43,10 @@ class SuccessNotice extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting($this->details['greeting'])
-                    ->line($this->details['body'])
-                    ->action($this->details['actiontext'],$this->details['actionurl'])
-                    ->line($this->details['lastline']);
+                    ->greeting($this->faildetails['greeting'])
+                    ->line($this->faildetails['body'])
+                    ->action($this->faildetails['actiontext'],$this->faildetails['actionurl'])
+                    ->line($this->faildetails['lastline']);
     }
 
     /**
