@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use App\Models\Admin;
-use App\Models\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -41,8 +39,6 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('guest:admin');
-        $this->middleware('guest:employee');
     }
 
     /**
@@ -61,25 +57,10 @@ class RegisterController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showAdminRegisterForm()
-    {
-        return view('auth.register', ['url' => 'admin']);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showEmployeeRegisterForm()
-    {
-        return view('auth.register', ['url' => 'employee']);
-    }
-
-    /**
-     * @param array $data
+     * Create a new user instance after a valid registration.
      *
-     * @return mixed
+     * @param  array  $data
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
@@ -88,38 +69,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function createAdmin(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        Admin::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        return redirect()->intended('login/admin');
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function createEmployee(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        Employee::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        return redirect()->intended('login/employee');
     }
 
 }

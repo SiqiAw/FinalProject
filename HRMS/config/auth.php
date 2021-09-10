@@ -46,21 +46,6 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-
-        'user' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-        
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
-        ],
-
-        'employee' => [
-            'driver' => 'session',
-            'provider' => 'employees',
-        ],
     ],
 
     /*
@@ -86,15 +71,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
-
-        'wmployees' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Employee::class,
-        ],
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'users',
+        // ],
     ],
 
     /*

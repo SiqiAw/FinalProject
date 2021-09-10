@@ -23,10 +23,10 @@ $(document).ready(function(){
 })
 
 // validation form
-/* const form = document.getElementById('form');
-const applicantname = document.getElementById('name');
+const form = document.getElementById('form');
 const noic = document.getElementById('noic');
 const email = document.getElementById('email');
+const phone_num = document.getElementById('phone');
 const zipcode = document.getElementById('zipcode');
 
 form.addEventListener('submit', (e) => {
@@ -37,66 +37,88 @@ form.addEventListener('submit', (e) => {
 
 function checkInputs() {
   // need to get the value from the input first
-  const applicantnameValue = applicantname.value.trim()
   const noicValue = noic.value.trim()
   const emailValue = email.value.trim()
-  const sipcodeValue = zipcode.value.trim()
+  const zipcodeValue = zipcode.value.trim()
 
-  if (applicantnameValue === "") {
-    // show error
-    // add error class
-    setErrorFor(applicantname, 'Applicant name cannot be blank.');
+  if (noicValue === "") {
+    setFourErrorFor(noic, "NOIC cannot be blank.");
+  } else if (!isNOIC(noicValue)) {
+    setFourErrorFor(noic, "NOIC is not valid.");
   } else {
-    // add success class
-    setSuccessFor(applicantname, 'Applicant name cannot be blank.');
+    setFourSuccessFor(noic);
   }
 
   if (emailValue === "") {
-    setEmailErrorFor(email, 'Email cannot be blank.');
+    setSixErrorFor(email, 'Email cannot be blank.');
   } else if (!isEmail(emailValue)) {
-    setEmailErrorFor(email, 'Email is not valid.')
+    setSixErrorFor(email, 'Email is not valid.');
   } else {
-    setEmailSuccessFor(email)
+    setSixSuccessFor(email);
+  }
+  
+  if (zipcodeValue === "") {
+    setTwoErrorFor(zipcode, "Zip Code cannot be blank.");
+  } else if (!isZipcode(zipcodeValue)) {
+    setTwoErrorFor(zipcode, "Zip Code is not valid");
+  } else {
+    setTwoSuccessFor(zipcode);
   }
 
+}
+
+function isNOIC() {
+  return /^\d{6}-\d{2}-\d{4}$/.test(noic);
 }
 
 function isEmail() {
   return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
-function setErrorFor(input, message) {
-  const formGroup = input.parentElement;
-  const small = formGroup.querySelector('small');
-
-  small.innerText = message;
-
-  formGroup.className = 'form-group col-md-12 error';
+function isZipcode() {
+  return /^[0-9]$/.test(zipcode);
 }
 
-function setSuccessFor(input) {
-  const formGroup = input.parentElement;
-  formGroup.className = 'form-group col-md-12 success';
-}
-
-function setEmailErrorFor(input, message) {
+function setSixErrorFor(input, message) {
   const formGroup = input.parentElement;
   const small = formGroup.querySelector('small');
-
-  // add error message
   small.innerText = message;
-
-  // add error class
   formGroup.className = 'form-group col-md-6 error';
 }
 
-function setEmailSuccessFor(input) {
+function setSixSuccessFor(input) {
   const formGroup = input.parentElement;
   formGroup.className = 'form-group col-md-6 success';
 }
- */
+
+function setFourErrorFor(input, message) {
+  const formGroup = input.parentElement;
+  const small = formGroup.querySelector('small');
+  small.innerText = message;
+  formGroup.className = 'form-group col-md-4 error';
+}
+
+function setFourSuccessFor(input) {
+  const formGroup = input.parentElement;
+  formGroup.className = 'form-group col-md-4 success';
+}
+
+function setTwoErrorFor(input, message) {
+  const formGroup = input.parentElement;
+  const small = formGroup.querySelector('small');
+
+  small.innerText = message;
+
+  formGroup.className = 'form-group col-md-2 error';
+}
+
+function setTwoSuccessFor(input) {
+  const formGroup = input.parentElement;
+  formGroup.className = 'form-group col-md-2 success';
+}
+
 // submit button
-/* (function() {
+(function() {
   $('form input').keyup(function() {
 
       var empty = false;
@@ -112,4 +134,4 @@ function setEmailSuccessFor(input) {
           $('#submit').removeAttr('disabled');
       }
   });
-})() */
+})()

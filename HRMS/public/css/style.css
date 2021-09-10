@@ -60,7 +60,8 @@ a:focus {
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
+    padding: 25px 0px;
+    margin-left: 10px;
     border-bottom: 1px solid #47748b;
 }
 
@@ -75,13 +76,14 @@ a:focus {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+    color: #fff;
+    background: #6174bd;
+    margin-left: 10px;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #5f70bb;
 }
 
 #sidebar ul ul a {
@@ -128,7 +130,7 @@ a:focus {
   border: 1px solid #ccc;
   background-color: #7386D5;
   width: 20%;
-  min-height: 140vh;
+  min-height: 165vh;
 }
 
 .tab button {
@@ -159,14 +161,25 @@ a:focus {
   border: 1px solid #ccc;
   width: 80%;
   border-left: none;
-  min-height: 140vh;
+  min-height: 165vh;
   border-top-right-radius: 3%;
   border-bottom-right-radius: 3%;
 }
 
-/* search select */
+.asterisk {
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* online recruitment - search select */
 .search_select_box {
     max-width: 300px;
+}
+
+#special.search_select_box {
+    max-width: 300px;
+    margin: -10px 0px;
 }
 
 .search_select_box select {
@@ -177,6 +190,10 @@ a:focus {
     border: 1px solid #ccc;
     background-color: white;
     height: 35px;
+}
+
+.form-group {
+    padding: 10px 0px;
 }
 
 .form-group.error input {
@@ -206,7 +223,7 @@ button#submit {
     list-style-type: square;
 }
 
-/* nav links */
+/* online recruitment admin - nav links */
 .nav button {
   display: block;
   background-color: inherit;

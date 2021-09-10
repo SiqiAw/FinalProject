@@ -45,7 +45,6 @@ class Unfortunately extends Notification
         return (new MailMessage)
                     ->greeting($this->faildetails['greeting'])
                     ->line($this->faildetails['body'])
-                    ->action($this->faildetails['actiontext'],$this->faildetails['actionurl'])
                     ->line($this->faildetails['lastline']);
     }
 

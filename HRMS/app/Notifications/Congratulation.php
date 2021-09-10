@@ -45,7 +45,6 @@ class Congratulation extends Notification
         return (new MailMessage)
                     ->greeting($this->successdetails['greeting'])
                     ->line($this->successdetails['body'])
-                    ->action($this->successdetails['actiontext'],$this->successdetails['actionurl'])
                     ->line($this->successdetails['lastline']);
     }
 

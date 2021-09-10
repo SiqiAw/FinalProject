@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EventController;
@@ -25,28 +26,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
-Route::get('/login/employee', [LoginController::class,'showEmployeeLoginForm']);
-Route::get('/register/admin', [RegisterController::class,'showAdminRegisterForm']);
-Route::get('/register/employee', [RegisterController::class,'showEmployeeRegisterForm']);
-
-Route::post('/login/admin', [LoginController::class,'adminLogin']);
-Route::post('/login/employee', [LoginController::class,'employeeLogin']);
-Route::post('/register/admin', [RegisterController::class,'createAdmin']);
-Route::post('/register/employee', [RegisterController::class,'createEmployee']);
-
-Route::group(['middleware' => 'auth:employee'], function () {
-    Route::view('employee.employee', 'employee');
-});
-
-Route::group(['middleware' => 'auth:admin'], function () {
-    
-    Route::view('admin.admin', 'admin');
-});
-
-Route::get('logout', [LoginController::class,'logout']);
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home',[HomeController::class ,'index'])->name('home');
+Route::get('admin/home',[HomeController::class ,'adminHome'])->name('admin.home')->middleware('is_admin');
 
 // full calendar route
 Route::get('/calendar', [EventController::class, 'index'])->name('showCalendar');

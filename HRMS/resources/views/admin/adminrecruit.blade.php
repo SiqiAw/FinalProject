@@ -4,8 +4,10 @@
     <div class="container">
 
         <div style="margin-bottom: 20px;">
-            <div class="col-md-3" style="float:right; margin-bottom: 10px">
-                <form class="input-group" method="post" action="{{ route('search.applicant') }}">
+            <button type="button" class="btn btn-primary" style="visibility: hidden;">
+            </button>
+            <div class="col-md-3" style="float:right;">
+                <form class="input-group" method="post" action="{{ route('searchCity') }}">
                     @csrf
                     <input type="text" class="form-control" id="search" name="search" placeholder="search">
                     <button class="btn btn-dark" type="submit">Search</button>

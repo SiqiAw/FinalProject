@@ -8,11 +8,13 @@
 
     <title>Human Resource Management System</title>
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+    
     @yield('css')
 
 </head>
@@ -83,7 +85,9 @@
                     <a href="#">Payroll</a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.show') }}">Online Recruitment</a>
+                    <a href="{{ route('admin.show') }}">
+                        Online Recruitment <span class="label label-pill label-danger count"></span>
+                    </a>
                 </li>
                 <li>
                     <a href="{{ route('showCalendar') }}">Calendar</a>
@@ -134,6 +138,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/onlinerecruit.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -141,7 +146,7 @@
                 $('#sidebar').toggleClass('active');
             });
         });
-
+        
         function openForm(evt, formName) {
             var i, navcontent, navlinks;
             navcontent = document.getElementsByClassName("navcontent");
@@ -158,6 +163,24 @@
                 evt.currentTarget.className += " active";
         }
         document.getElementById("defaultOpen").click();
+        
+        /* $(document).ready(function(){
+
+            function load_unseen_notification(view = '')
+            {
+                $.ajax({
+                    url:"fetch.php",
+                    method:"POST",
+                    data:{view:view},
+                    dataType:"json",
+                    success:function(data)
+                    {
+                        
+                    }
+                })
+            }
+
+        }); */
     </script>
     @yield('script')
     

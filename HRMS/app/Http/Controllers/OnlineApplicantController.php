@@ -160,7 +160,7 @@ class OnlineApplicantController extends Controller
 
         Notification::send($onlineapplicants, new Congratulation($successdetails));
 
-        Session::flash('success', 'Email successfully send.');
+        Session::flash('success', "Email successfully send.");
         return redirect()->route('admin.show');
     }
 
@@ -179,7 +179,7 @@ class OnlineApplicantController extends Controller
 
         Notification::send($onlineapplicants, new Unfortunately($faildetails));
 
-        Session::flash('success', 'Email successfully send.');
+        Session::flash('success', "Email successfully send.");
         return redirect()->route('admin.show');
     }
     
