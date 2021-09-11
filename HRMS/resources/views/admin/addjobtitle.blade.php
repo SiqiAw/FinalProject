@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Job Title</h5>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form form method="post" action="{{ route('addJobtitle') }}" enctype="multipart/form-data">
@@ -14,10 +14,10 @@
             </div>
             <div class="mb-3">
                 <label for="">Department</label>
-                <select name= "department" id= "department" class="form-control">
-                    @foreach($departments as $department)
-                        <option value=" {{ $department->department_name }}">
-                            {{ $department->department_name }}
+                <select name="department" id="department" class="form-control">
+                    @foreach($departments as $dept)
+                        <option value="{{ $dept->department_name }}">
+                            {{ $dept->department_name }}
                         </option>
                     @endforeach
                 </select>
@@ -27,8 +27,8 @@
                 <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter description of the job"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Add Job Title</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Add</button>
             </div>
         </form>
       </div>

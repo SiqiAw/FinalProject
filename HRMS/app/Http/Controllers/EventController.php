@@ -7,7 +7,6 @@ use App\Models\Event;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 use Session;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class EventController extends Controller
 {
@@ -65,9 +64,9 @@ class EventController extends Controller
 
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        $events = Event::paginate(10);
+        $events = Event::all();
         return view('admin.eventlist')->with('events', $events);
     }
 
@@ -121,7 +120,8 @@ class EventController extends Controller
         $keyword = $request->search;
         $events = DB::table('events')
         ->where('eventname', 'like', '%' .$keyword. '%')
-        ->paginate(10);
+        ->orWhere('start_date', 'like', '%' .$keyword. '%')
+        ->get();
 
         return view('admin.eventlist')->with('events', $events);
     }

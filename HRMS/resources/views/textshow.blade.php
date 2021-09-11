@@ -1,19 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.test')
+
 @section('content')
 
 <div class="container">
-    <table class="table table-striped table-bordered table-hover">
+    <table id="table1" class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th width="5%">ID</th>
-                    <th>Address</th>
-                    <th>State</th>
-                    <th>City</th>
-                    <th>ZipCode</th>
+                    <td width="5%">ID</td>
+                    <td>Address</td>
+                    <td>State</td>
+                    <td>City</td>
+                    <td>ZipCode</td>
                 </tr>
             </thead>
             @foreach($tests as $test)
-            <tbody>
+            
                 <tr>
                     <td>{{ $test->id }}</td>
                     <td>{{ $test->address }}</td>
@@ -21,9 +22,18 @@
                     <td>{{ $test->city }}</td>
                     <td>{{ $test->zipcode }}</td>
                 </tr>
-            </tbody>
+           
             @endforeach
     </table>
 </div>
+
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#table1').DataTable();
+        });
+    </script>
 
 @endsection

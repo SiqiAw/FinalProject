@@ -25,7 +25,7 @@
             <!-- About Me -->
             <div id="Aboutme" class="navcontent">
                 <div class="row g-3" style="padding: 5%;">
-                    <h4 class="mb-3"><a class="back" href="{{ route('admin.show') }}"> < {{ $onlineapplicant -> name }}</a>/About Me</h4>
+                    <h4 class="mb-3"><a class="back" href="{{ route('admin.recruitment') }}"> < {{ $onlineapplicant -> name }}</a>/About Me</h4>
                     <div class="col-md-12">
                         <label for="" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ $onlineapplicant -> name }}" disabled>
@@ -111,7 +111,7 @@
             <!-- Upload Resume -->
             <div id="Resume" class="navcontent">
                 <div class="form-row" style="padding: 5%;">
-                    <h4 class="col-md-12"><a class="back" href="{{ route('admin.show') }}"> < {{ $onlineapplicant -> name }}</a>/Resume</h4>
+                    <h4 class="col-md-12"><a class="back" href="{{ route('admin.recruitment') }}"> < {{ $onlineapplicant -> name }}</a>/Resume</h4>
                     <div class="col-md-12" style="padding: 5%;">
                         File Name: <input
                          type="text" name="resume-file" id="resume" 
@@ -134,7 +134,7 @@
             <!-- Emergency Contact-->
             <div id="EmergencyContact" class="navcontent">
                 <div class="row g-3" style="padding: 5%;">
-                    <h4 class="mb-3"><a class="back" href="{{ route('admin.show') }}"> < {{ $onlineapplicant -> name }}</a>/Emergency Contact</h4>
+                    <h4 class="mb-3"><a class="back" href="{{ route('admin.recruitment') }}"> < {{ $onlineapplicant -> name }}</a>/Emergency Contact</h4>
                     <div class="col-md-12">
                         <label for="" class="form-label">Name</label>
                         <input type="text" class="form-control" id="Ename" name="Ename" value="{{ $onlineapplicant -> emergency_contact_name }}" disabled>

@@ -5,7 +5,7 @@
     <div class="container">
 
         <div style="margin-bottom: 20px;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDept">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDept">
                 Add Department
             </button>
             <div class="col-md-3" style="float:right;">
@@ -25,36 +25,44 @@
             @endif
         </div>
 
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
+        <table id="deptTableid" class="table table-bordered table-hover">
+            <thead>
                 <tr>
                     <th width="5%">ID</th>
                     <th>Department Name</th>
-                    <th>Action</th>
+                    <th style="text-align:center;">Action</th>
                 </tr>
             </thead>
             @foreach($departments as $department)
-            <tbody>
-                <tr>
-                    <td>{{ $department->id }}</td>
-                    <td>{{ $department->department_name }}</td>
+            <tr>
+                <td>{{ $department->id }}</td>
+                <td>{{ $department->department_name }}</td>
                     
-                    <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editDept{{$department->id}}">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <a href="{{ route('deleteDept', ['id' => $department->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this deparment?')">
-                            <i class="bi bi-trash-fill"></i>
-                        </a>
-                    </td>
-                    @include('admin.editdepartment')
-                </tr>
-            </tbody>
+                <td style="text-align:center;">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editDept{{$department->id}}">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <a href="{{ route('deleteDept', ['id' => $department->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this deparment?')">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                </td>
+                @include('admin.editdepartment')
+            </tr>
             @endforeach
         </table>
+        <a href="{{ route('showDept') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
+            Back
+        </a>
     </div>
+@endsection
 
-    <div class="page_link" style="float: right;">
-        {{$departments->links()}}
-    </div>
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#deptTableid').DataTable({
+                "pagingType": "full_numbers",
+                "searching": false,
+            });
+        });
+    </script>
 @endsection

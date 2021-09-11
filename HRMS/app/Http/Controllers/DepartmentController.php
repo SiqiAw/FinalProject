@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use Session;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class DepartmentController extends Controller
 {
@@ -31,7 +30,7 @@ class DepartmentController extends Controller
 
     function show()
     {
-        $departments = Department::paginate(10);
+        $departments = Department::all();
         return view('admin.departmentpage')->with('departments', $departments);
     }
 
@@ -67,7 +66,7 @@ class DepartmentController extends Controller
         $keyword = $request->search;
         $departments = DB::table('departments')
         ->where('department_name', 'like', '%' . $keyword . '%')
-        ->paginate(10);
+        ->get();
         
         return view('admin.departmentpage')->with('departments', $departments);
     }

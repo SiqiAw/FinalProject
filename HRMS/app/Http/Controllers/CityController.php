@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\City;
 use Session;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class CityController extends Controller
 {
@@ -32,7 +31,7 @@ class CityController extends Controller
 
     function show()
     {
-        $cities = City::paginate(10);
+        $cities = City::all();
         return view('admin.citypage')->with('cities', $cities);
     }
 
@@ -68,7 +67,7 @@ class CityController extends Controller
         $keyword = $request->search;
         $cities = DB::table('cities')
         ->where('name', 'like', '%' . $keyword . '%')
-        ->paginate(10);
+        ->get();
         
         return view('admin.citypage')->with('cities', $cities);
     }

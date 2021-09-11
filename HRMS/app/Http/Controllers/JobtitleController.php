@@ -7,7 +7,6 @@ use App\Models\Jobtitle;
 use App\Models\Department;
 use Session;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class JobtitleController extends Controller
 {
@@ -18,7 +17,6 @@ class JobtitleController extends Controller
 
     function store(Request $request)
     {
-        
         $addDepartment = Jobtitle::create([    //step 3 bind data
             'id'=>$request->ID, //add on 
             'jobtitle_name'=>$request->jobtitle_name, //fullname from HTML
@@ -33,7 +31,7 @@ class JobtitleController extends Controller
 
     function show()
     {
-        $jobtitles = Jobtitle::paginate(10);
+        $jobtitles = Jobtitle::all();
         return view('admin.jobtitle')->with('jobtitles', $jobtitles)
                                      ->with('departments', Department::all());
     }
@@ -67,20 +65,5 @@ class JobtitleController extends Controller
 
         Session::flash('success', "Job title deleted.");
         return redirect()->route('showJobtitle');
-    }
-    
-    function search()
-    {
-        /* $request = request();
-        $keyword = $request->search;
-        $jobtitles = DB::table('jobtitles')
-        ->leftjoin('departments', 'departments.id', '=', 'jobtitles.department_id')
-        ->select('departments.department_name as deptname', 'departments.id as catid', 'jobtitles.*')
-        ->where('jobtitles.jobtitle_name', 'like', '%' .$keyword. '%')
-        ->orWhere('jobtitles.department_id', 'like', '%' .$keyword. '%')
-        ->orWhere('jobtitles.description', 'like', '%' .$keyword. '%')
-        ->get();
-
-        return view('jobtitle')->with('jobtitles', $jobtitles); */
     }
 }

@@ -13,7 +13,7 @@
 
         <div style="margin-bottom: 20px;">
             <a href="{{ route('showCalendar') }}" class="btn btn-success">
-                Back
+                Show Calendar
             </a>
             <div class="col-md-3" style="float:right;">
                 <form class="input-group" method="post" action="{{ route('searchEvent') }}">
@@ -32,45 +32,52 @@
             </div>
         </div>
 
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
+        <table id="eventTableid" class="table table-bordered table-hover">
+            <thead>
                 <tr>
                     <th width="5%">ID</th>
                     <th>Event Name</th>
                     <th>Color</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Action</th>
+                    <th style="text-align:center;">Action</th>
                 </tr>
             </thead>
             @foreach($events as $event)
-            <tbody>
-                <tr>
-                    <td>{{ $event->id }}</td>
-                    <td>{{ $event->eventname }}</td>
-                    <td style="background-color:{{ $event->color }}"> </td>
-                    <td>{{ $event->start_date }}</td>
-                    <td>{{ $event->end_date }}</td>
+            <tr>
+                <td>{{ $event->id }}</td>
+                <td>{{ $event->eventname }}</td>
+                <td style="background-color:{{ $event->color }}"> </td>
+                <td>{{ $event->start_date }}</td>
+                <td>{{ $event->end_date }}</td>
                     
-                    <td>
-                    @if ($event->start_date > date('Y-m-d H:i:s'))
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-idUpdate="'.$event->id.'" data-target="#editEvent{{$event->id}}">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <a href="{{ route('deleteEvent', ['id' => $event->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this event?')">
-                            <i class="bi bi-trash-fill"></i>
-                        </a>
-                    @endif
-                    </td>
-                    @include('admin.editevent')
-                </tr>
-            </tbody>
+                <td style="text-align:center;">
+                @if ($event->start_date > date('Y-m-d H:i:s'))
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-idUpdate="'.$event->id.'" data-bs-target="#editEvent{{$event->id}}">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <a href="{{ route('deleteEvent', ['id' => $event->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this event?')">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                @endif
+                </td>
+                @include('admin.editevent')
+            </tr>
             @endforeach
         </table>
+        <a href="{{ route('showEventList') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
+            Back
+        </a>
     </div>
+@endsection
 
-    <div class="page_link" style="float: right;">
-        {{$events->links()}}
-    </div>
-
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#eventTableid').DataTable({
+                "pagingType": "full_numbers",
+                "searching": false,
+            });
+        });
+    </script>
 @endsection

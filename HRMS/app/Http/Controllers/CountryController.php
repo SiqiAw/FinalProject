@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Country;
 use Session;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class CountryController extends Controller
 {
@@ -33,7 +32,7 @@ class CountryController extends Controller
 
     function show()
     {
-        $countries = Country::paginate(10);
+        $countries = Country::all();
         return view('admin.countrypage')->with('countries', $countries);
     }
 
@@ -69,7 +68,7 @@ class CountryController extends Controller
         $keyword = $request->search;
         $countries = DB::table('countries')
         ->where('name', 'like', '%' .$keyword. '%')
-        ->paginate(10);
+        ->get();
 
         return view('admin.countrypage')->with('countries', $countries);
     }

@@ -5,7 +5,7 @@
     <div class="container">
 
         <div style="margin-bottom: 20px;">
-            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addWRKtime">
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addWRKtime">
                 Add Working Time
             </button>
             <div class="col-md-3" style="float:right;">
@@ -25,40 +25,48 @@
             @endif
         </div>
 
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
+        <table id="timeTableid" class="table table-bordered table-hover">
+            <thead>
                 <tr>
                     <th width="5%">ID</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Duration</th>
-                    <th>Action</th>
+                    <th width="25%">Start Time</th>
+                    <th width="25%">End Time</th>
+                    <th width="25%">Duration</th>
+                    <th width="20%" style="text-align:center;">Action</th>
                 </tr>
             </thead>
             @foreach($workingtimes as $workingtime)
-            <tbody>
-                <tr>
-                    <td>{{ $workingtime->id }}</td>
-                    <td>{{ $workingtime->start }}</td>
-                    <td>{{ $workingtime->end }}</td>
-                    <td>{{ $workingtime->duration }}</td>
+            <tr>
+                <td>{{ $workingtime->id }}</td>
+                <td>{{ $workingtime->start }}</td>
+                <td>{{ $workingtime->end }}</td>
+                <td>{{ $workingtime->duration }}</td>
                     
-                    <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editWRKtime{{$workingtime->id}}">
-                            Edit
-                        </button>
-                        <a href="{{ route('deleteWRKtime', ['id' => $workingtime->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this deparment?')">
-                            Delete
-                        </a>
-                    </td>
-                    @include('admin.editworkingtime')
+                <td style="text-align:center;">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editWRKtime{{$workingtime->id}}">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <a href="{{ route('deleteWRKtime', ['id' => $workingtime->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this deparment?')">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                </td>
+                @include('admin.editworkingtime')
                 </tr>
-            </tbody>
             @endforeach
         </table>
+        <a href="{{ route('showWRKtime') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
+            Back
+        </a>
     </div>
+@endsection
 
-    <div class="page_link" style="float: right;">
-        {{$workingtimes->links()}}
-    </div>
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#timeTableid').DataTable({
+                "pagingType": "full_numbers",
+                "searching": false,
+            });
+        });
+    </script>
 @endsection

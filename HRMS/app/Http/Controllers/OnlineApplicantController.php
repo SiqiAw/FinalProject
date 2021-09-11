@@ -14,7 +14,6 @@ use App\Models\Jobtitle;
 use App\Models\Employee;
 use Session;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Notification;
 use App\Notifications\Congratulation;
 use App\Notifications\Unfortunately;
@@ -70,7 +69,7 @@ class OnlineApplicantController extends Controller
 
     function adminshow()
     {
-        $onlineapplicants = OnlineApplicant::paginate(10);
+        $onlineapplicants = OnlineApplicant::all();
         return view('admin.adminrecruit')->with('onlineapplicants', $onlineapplicants);
         
     }
@@ -139,7 +138,7 @@ class OnlineApplicantController extends Controller
         $onlineapplicants = DB::table('online_applicants')
         ->where('name', 'like', '%' . $keyword . '%')
         ->orWhere('gender', 'like', '%' . $keyword . '%')
-        ->paginate(10);
+        ->get();
         
         return view('admin.adminrecruit')->with('onlineapplicants', $onlineapplicants);
     }
@@ -161,7 +160,7 @@ class OnlineApplicantController extends Controller
         Notification::send($onlineapplicants, new Congratulation($successdetails));
 
         Session::flash('success', "Email successfully send.");
-        return redirect()->route('admin.show');
+        return redirect()->route('admin.recruitment');
     }
 
     public function sendUnfortunately($id)
@@ -180,7 +179,7 @@ class OnlineApplicantController extends Controller
         Notification::send($onlineapplicants, new Unfortunately($faildetails));
 
         Session::flash('success', "Email successfully send.");
-        return redirect()->route('admin.show');
+        return redirect()->route('admin.recruitment');
     }
     
 }

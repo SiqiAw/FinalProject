@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="d-grid gap-2 d-md-block" style="margin-bottom: 20px;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEvent">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEvent">
                 Add Event
             </button>
             <a href="{{ route('showEventList')}}" class="btn btn-success">Event List</a>

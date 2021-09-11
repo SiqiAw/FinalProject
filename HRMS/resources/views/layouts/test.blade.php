@@ -14,12 +14,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
-
+    
     <script defer src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.11.2/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.2/css/dataTables.bootstrap5.min.css">
-    
-    @yield('css')
 
 </head>
 
@@ -154,57 +152,22 @@
 
     </div>
     
-    
+</body>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/onlinerecruit.js') }}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-
-        });
-        
-        function openForm(evt, formName) {
-            var i, navcontent, navlinks;
-            navcontent = document.getElementsByClassName("navcontent");
-            for (i = 0; i < navcontent.length; i++) {
-                navcontent[i].style.display = "none";
-            }
-
-            navlinks = document.getElementsByClassName("nav-link");
-            for (i = 0; i < navlinks.length; i++) {
-                navlinks[i].className = navlinks[i].className.replace(" active", "");
-            }
-
-            document.getElementById(formName).style.display = "block";
-                evt.currentTarget.className += " active";
-        }
-        document.getElementById("defaultOpen").click();
-        
-        /* $(document).ready(function(){
-
-            function load_unseen_notification(view = '')
-            {
-                $.ajax({
-                    url:"fetch.php",
-                    method:"POST",
-                    data:{view:view},
-                    dataType:"json",
-                    success:function(data)
-                    {
-                        
-                    }
-                })
-            }
-
-        }); */
-    </script>
     @yield('script')
-    
-</body>
 </html>
+
+<!-- <script>
+        $(document).ready(function() {
+            $('#tableid').dataTable({
+                "pagingType": "full_numbers",
+                "responsive": true,
+                "searching": false,
+            });
+        });
+    </script> -->

@@ -10,8 +10,8 @@
             @endif
         </div>
 
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
+        <table class="table table-bordered table-hover dataTable">
+            <thead>
                 <tr>
                     <th width="5%">ID</th>
                     <th>Name</th>

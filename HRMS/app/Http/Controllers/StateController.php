@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\State;
 use Session;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class StateController extends Controller
 {
@@ -33,7 +32,7 @@ class StateController extends Controller
 
     function show()
     {
-        $states = State::paginate(10);
+        $states = State::all();
         return view('admin.statepage')->with('states', $states);
     }
 
@@ -69,7 +68,7 @@ class StateController extends Controller
         $keyword = $request->search;
         $states = DB::table('states')
         ->where('name', 'like', '%' .$keyword. '%')
-        ->paginate(10);
+        ->get();
 
         return view('admin.statepage')->with('states', $states);
     }

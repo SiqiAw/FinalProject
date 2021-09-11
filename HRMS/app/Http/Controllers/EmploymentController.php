@@ -7,7 +7,6 @@ use App\Models\Employment;
 use App\Models\Workingtime;
 use Session;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class EmploymentController extends Controller
 {
@@ -30,7 +29,7 @@ class EmploymentController extends Controller
 
     function show()
     {
-        $employments = Employment::paginate(10);
+        $employments = Employment::all();
         return view('admin.employmentpage')->with('employments', $employments)
                                            ->with('workingtimes', Workingtime::all());
     }
@@ -62,10 +61,5 @@ class EmploymentController extends Controller
 
         Session::flash('success', "Employment deleted.");
         return redirect()->route('showEmployment');
-    }
-
-    function search()
-    {
-
     }
 }

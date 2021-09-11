@@ -25,6 +25,39 @@
     a.card-footer {
         text-align: center;
     }
+
+    @media (max-width: 900px) {
+        .icon i {
+            visibility: hidden;
+        }
+
+        .card-body {
+            height: 150px;
+        }
+        
+        span {
+            visibility: hidden;
+        }
+
+        a.card-footer i {
+            font-size: 20px;   
+        }
+    }
+
+    @media (max-width: 500px) {
+        .icon i {
+            visibility: visible;
+        }
+
+        .col-sm-3 {
+            margin: 10px 0;
+        }
+
+        a.card-footer span {
+            visibility: visible;
+        }
+
+    }
 </style>
 
 @endsection
@@ -47,7 +80,9 @@
                             <i class="bi bi-people-fill"></i>
                         </div>
                     </div>
-                    <a href="#" class="card-footer text-muted">More info <i class="bi bi-arrow-right-circle-fill"></i></a>
+                    <a href="#" class="card-footer text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom" title="more info"> 
+                        <span>More info</span>  <i class="bi bi-arrow-right-circle-fill"></i>
+                    </a>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -62,7 +97,9 @@
                                 <i class="bi bi-person-plus-fill"></i>
                             </div>
                         </div>
-                        <a href="#" class="card-footer text-muted">More info <i class="bi bi-arrow-right-circle-fill"></i></a>
+                        <a href="{{ route('admin.recruitment') }}" class="card-footer text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom" title="more info"> 
+                            <span>More info</span> <i class="bi bi-arrow-right-circle-fill"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -77,7 +114,9 @@
                             <i class="bi bi-umbrella-fill"></i>
                         </div>
                     </div>
-                    <a href="#" class="card-footer text-muted">More info <i class="bi bi-arrow-right-circle-fill"></i></a>
+                    <a href="#" class="card-footer text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom" title="more info"> 
+                        <span>More info</span>  <i class="bi bi-arrow-right-circle-fill"></i>
+                    </a>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -92,7 +131,9 @@
                             <i class="bi bi-calendar-day-fill"></i>
                         </div>
                     </div>
-                    <a href="#" class="card-footer text-muted">More info <i class="bi bi-arrow-right-circle-fill"></i></a>
+                    <a href="{{ route('showEventList') }}" class="card-footer text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom" title="more info"> 
+                        <span>More info</span>  <i class="bi bi-arrow-right-circle-fill"></i>
+                    </a>
                     </div>
                 </div>
             </div>

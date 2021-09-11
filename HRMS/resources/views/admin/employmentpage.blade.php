@@ -5,16 +5,9 @@
     <div class="container">
 
         <div style="margin-bottom: 20px;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEmployment">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployment">
                 Add Employment
             </button>
-            <div class="col-md-3" style="float:right;">
-                <form class="input-group" method="post" action="{{ route('searchEmployment') }}">
-                    @csrf
-                    <input type="text" class="form-control" id="search" name="search" placeholder="search">
-                    <button class="btn btn-dark" type="submit">Search</button>
-                </form>
-            </div>
         </div>
 
         <div>
@@ -25,38 +18,45 @@
             @endif
         </div>
 
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
+        <table id="employmentTableid" class="table table-bordered table-hover">
+            <thead>
                 <tr>
                     <th width="5%">ID</th>
                     <th>Employment Type</th>
                     <th>Working Time</th>
-                    <th >Action</th>
+                    <th style="text-align:center;">Action</th>
                 </tr>
             </thead>
             @foreach($employments as $employment)
-            <tbody>
-                <tr>
-                    <td>{{ $employment->id }}</td>
-                    <td>{{ $employment->employment_name }}</td>
-                    <td>{{ $employment->workingtime_id }}</td>
+            <tr>
+                <td>{{ $employment->id }}</td>
+                <td>{{ $employment->employment_name }}</td>
+                <td>{{ $employment->workingtime_id }}</td>
                    
-                    <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editEmployment{{$employment->id}}">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <a href="{{ route('deleteEmployment', ['id' => $employment->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete?')">
-                            <i class="bi bi-trash-fill"></i>
-                        </a>
-                    </td>
-                    @include('admin.editemployment')
-                </tr>
-            </tbody>
+                <td style="text-align:center;">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editEmployment{{$employment->id}}">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <a href="{{ route('deleteEmployment', ['id' => $employment->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete?')">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                </td>
+                @include('admin.editemployment')
+            </tr>
             @endforeach
         </table>
+        <a href="{{ route('showEmployment') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
+            Back
+        </a>
     </div>
+@endsection
 
-    <div class="page_link" style="float: right;">
-        {{$employments->links()}}
-    </div>
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#employmentTableid').DataTable({
+                "pagingType": "full_numbers",
+            });
+        });
+    </script>
 @endsection

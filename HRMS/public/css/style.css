@@ -23,10 +23,29 @@ a:focus {
 }
 
 .navbar {
+    margin: 0%;
     background: #fff;
     border: none;
     border-radius: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+ul.navbar-nav {
+    flex-direction: row;
+}
+
+ul.navbar-nav li {
+    margin-left: 10px;
+}
+
+ul.navbar-nav li a {
+    color: black;
+    background-color: inherit;
+}
+
+ul.navbar-nav li.active > a, a[aria-expanded="true"] {
+    color: black;
+    background: inherit;
 }
 
 .navbar-brand {
@@ -52,11 +71,15 @@ a:focus {
     min-width: 250px;
     max-width: 250px;
     min-height: 100vh;
-    margin-right: 2%;
 }
 
 #sidebar.active {
     margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
 }
 
 #sidebar ul.components {

@@ -37,7 +37,7 @@ class WorkingtimeController extends Controller
 
     function show()
     {
-        $workingtimes = Workingtime::paginate(10);
+        $workingtimes = Workingtime::all();
         return view('admin.workingtime')->with('workingtimes', $workingtimes);
     }
 
@@ -77,7 +77,7 @@ class WorkingtimeController extends Controller
         ->where('start', 'like', '%' .$keyword. '%')
         ->orWhere('end', 'like', '%' .$keyword. '%')
         ->orWhere('duration', 'like', '%' .$keyword. '%')
-        ->paginate(10);
+        ->get();
 
         return view('admin.workingtime')->with('workingtimes', $workingtimes);
     }

@@ -152,8 +152,8 @@ Route::post('/searchleavetype',[LeavetypeController::class,'search'])->name('sea
 // online applicant system
 Route::get('/onlinerecruitment',[OnlineApplicantController::class,'show'])->name('showOnlineRecruit');
 Route::post('/onlinerecruitment/store',[OnlineApplicantController::class,'store'])->name('addApplicant');
-Route::get('/recruitmentadmin',[OnlineApplicantController::class,'adminshow'])->name('admin.show');
-Route::get('/adminview/{id}', [OnlineApplicantController::class,'view'])->name('admin.view');
+Route::get('/recruitmentadmin',[OnlineApplicantController::class,'adminshow'])->name('admin.recruitment');
+Route::get('/adminview/{id}', [OnlineApplicantController::class,'view'])->name('admin.recruitment.view');
 Route::get('/adminview/{id}/download',[OnlineApplicantController::class,'download'])->name('resume.download');
 Route::get('/employee/{id}',[OnlineApplicantController::class,'moverecord'])->name('move.record');
 Route::post('onlinerecruitment/search',[OnlineApplicantController::class,'search'])->name('search.applicant');
