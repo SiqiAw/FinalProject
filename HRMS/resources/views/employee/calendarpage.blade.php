@@ -1,5 +1,4 @@
-@extends('layouts.adminapp')
-
+@extends('layouts.empapp')
 @section('css')
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>   
 @endsection
@@ -12,7 +11,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end mt-2">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                     <li class="breadcrumb-item active">Full Calendar</li>
                 </ol>
             </div>
@@ -21,22 +20,10 @@
 @endsection
 
 @section('content')
-@include('admin.addevent')
 
     <div class="container">
         <div class="d-grid gap-2 d-md-block" style="margin-bottom: 20px;">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEvent">
-                Add Event
-            </button>
-            <a href="{{ route('showEventList')}}" class="btn btn-success">Event List</a>
-        </div>
-
-        <div>
-            @if(Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('success')}}
-                </div>
-            @endif
+            <a href="{{ route('emp.showEventList')}}" class="btn btn-success">Event List</a>
         </div>
     
         <div class="row">

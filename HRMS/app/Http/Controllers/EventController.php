@@ -125,4 +125,62 @@ class EventController extends Controller
 
         return view('admin.eventlist')->with('events', $events);
     }
+
+    /* function for employee */
+
+    public function emp_calendar_index()
+    {
+        $events = [];
+        $data = Event::all();
+        if($data->count())
+         {
+            foreach ($data as $key => $value) 
+            {
+                $events[] = Calendar::event(
+                    $value->eventname,
+                    true,
+                    new \DateTime($value->start_date),
+                    new \DateTime($value->end_date.'+1 day'),
+                    $value->id,
+                 [
+                     'color' => $value->color,
+                 ]
+                );
+            }
+        }
+        
+        $calendar = Calendar::addEvents($events);
+        return view('employee.calendarpage', compact('calendar'));
+    }
+
+    public function emp_calendar_show(Request $request)
+    {
+        $events = Event::all();
+        return view('employee.eventlist')->with('events', $events);
+    }
+
+    public function emp_calendar_searchDate()
+    {
+        $request = request();
+        $keyword = $request->searchdate;
+        $events = DB::table('events')
+        ->where('start_date', 'like', '%' .$keyword. '%')
+        ->orWhere('end_date', 'like', '%' .$keyword. '%')
+        ->get();
+
+        return view('employee.eventlist')->with('events', $events);
+    }
+
+    public function emp_calendar_search()
+    {
+        $request = request();
+        $keyword = $request->search;
+        $events = DB::table('events')
+        ->where('eventname', 'like', '%' .$keyword. '%')
+        ->orWhere('start_date', 'like', '%' .$keyword. '%')
+        ->get();
+
+        return view('employee.eventlist')->with('events', $events);
+    }
+
 }

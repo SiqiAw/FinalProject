@@ -1,4 +1,4 @@
-@extends('layouts.adminapp')
+@extends('layouts.empapp')
 
 @section('css')
 
@@ -69,7 +69,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end mt-2">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
             </div>
@@ -112,7 +112,7 @@
                                 <i class="bi bi-person-plus-fill"></i>
                             </div>
                         </div>
-                        <a href="{{ route('admin.recruitment') }}" class="card-footer text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom" title="more info"> 
+                        <a href="#" class="card-footer text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom" title="more info"> 
                             <span>More info</span> <i class="bi bi-arrow-right-circle-fill"></i>
                         </a>
                     </div>
@@ -146,7 +146,7 @@
                             <i class="bi bi-calendar-day-fill"></i>
                         </div>
                     </div>
-                    <a href="{{ route('showEventList') }}" class="card-footer text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom" title="more info"> 
+                    <a href="{{ route('emp.showEventList')}}" class="card-footer text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom" title="more info"> 
                         <span>More info</span>  <i class="bi bi-arrow-right-circle-fill"></i>
                     </a>
                     </div>
@@ -154,3 +154,4 @@
             </div>
     </div>
 @endsection
+

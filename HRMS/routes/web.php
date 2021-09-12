@@ -29,7 +29,7 @@ Auth::routes();
 Route::get('/home',[HomeController::class ,'index'])->name('home');
 Route::get('admin/home',[HomeController::class ,'adminHome'])->name('admin.home')->middleware('is_admin');
 
-// full calendar route
+// full calendar route -> admin
 Route::get('/calendar', [EventController::class, 'index'])->name('showCalendar');
 Route::get('/calendar/addevent', [EventController::class, 'display'])->name('showAddEvent');
 Route::post('/addevent/store', [EventController::class, 'store'])->name('addEvent');
@@ -39,6 +39,12 @@ Route::post('/updateevent', [EventController::class, 'update'])->name('updateEve
 Route::get('/deleteevent/{id}', [EventController::class, 'delete'])->name('deleteEvent'); 
 Route::post('/searchbydate', [EventController::class, 'searchDate'])->name('searchByDate');
 Route::post('/searchevent', [EventController::class, 'search'])->name('searchEvent');
+// full calendar route -> employee
+Route::get('/calendar', [EventController::class, 'emp_calendar_index'])->name('emp.showCalendar');
+Route::get('/calendar/showeventdetail', [EventController::class, 'emp_calendar_show'])->name('emp.showEventList');
+Route::post('/searchbydate', [EventController::class, 'emp_calendar_searchDate'])->name('emp.searchByDate');
+Route::post('/searchevent', [EventController::class, 'emp_calendar_search'])->name('emp.searchEvent');
+
 
 // department setting route
 Route::get('/department',[DepartmentController::class,'show'])->name('showDept');

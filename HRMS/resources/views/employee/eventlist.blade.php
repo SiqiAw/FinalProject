@@ -1,4 +1,4 @@
-@extends('layouts.adminapp')
+@extends('layouts.empapp')
 
 @section('content-header')
     <div class="container-fluid">
@@ -8,8 +8,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end mt-2">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                    <li class="breadcrumb-item"> <a href="{{ route('showCalendar') }}">Calendar</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item"> <a href="{{ route('emp.showCalendar') }}">Calendar</a></li>
                     <li class="breadcrumb-item active">Event List</li>
                 </ol>
             </div>
@@ -20,21 +20,12 @@
 @section('content')
 
     <div class="container">
-
-        <div>
-            @if(Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('success')}}
-                </div>
-            @endif
-        </div>
-
         <div style="margin-bottom: 20px;">
-            <a href="{{ route('showCalendar') }}" class="btn btn-success">
+            <a href="#" class="btn btn-success">
                 Show Calendar
             </a>
             <div class="col-md-3" style="float:right;">
-                <form class="input-group" method="post" action="{{ route('searchEvent') }}">
+                <form class="input-group" method="post" action="{{ route('emp.searchEvent') }}">
                     @csrf
                     <input type="text" class="form-control" id="search" name="search" placeholder="search">
                     <button class="btn btn-dark" type="submit">Search</button>   
@@ -42,7 +33,7 @@
                 </form>
             </div>
             <div class="col-md-3" style="float:right;">
-                <form class="input-group" method="post" action="{{ route('searchByDate') }}">
+                <form class="input-group" method="post" action="{{ route('emp.searchByDate') }}">
                     @csrf
                     <input type="date" class="form-control" id="searchdate" name="searchdate" value="{{date('Y-m-d')}}">
                     <button class="btn btn-dark" type="submit">View</button>
@@ -58,7 +49,6 @@
                     <th>Color</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th style="text-align:center;">Action</th>
                 </tr>
             </thead>
             @foreach($events as $event)
@@ -68,22 +58,10 @@
                 <td style="background-color:{{ $event->color }}"> </td>
                 <td>{{ $event->start_date }}</td>
                 <td>{{ $event->end_date }}</td>
-                    
-                <td style="text-align:center;">
-                @if ($event->start_date > date('Y-m-d H:i:s'))
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-idUpdate="'.$event->id.'" data-bs-target="#editEvent{{$event->id}}">
-                        <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <a href="{{ route('deleteEvent', ['id' => $event->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this event?')">
-                        <i class="bi bi-trash-fill"></i>
-                    </a>
-                @endif
-                </td>
-                @include('admin.editevent')
             </tr>
             @endforeach
         </table>
-        <a href="{{ route('showEventList') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
+        <a href="{{ route('emp.showEventList') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
             Back
         </a>
     </div>

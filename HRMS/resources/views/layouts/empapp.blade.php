@@ -34,61 +34,32 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="{{ route('admin.home') }}">Dashboard</a>
+                    <a href="{{ route('home') }}">Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{ route('showEmployee') }}">Employee</a>
+                    <a href="#">Employee</a>
                 </li>
                 <li>
                     <a href="#">Attendance</a>
                 </li>
                 <li>
-                    <a href="#">Leave</a>
+                    <a href="#pageSubmenu" class="dropdown-toggle" data-bs-toggle="collapse" aria-expanded="false">
+                    Leave<i class="fas fa-sort-down" style="margin-left:70%;"></i>
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">{{ __('Apply Leave') }}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{ __('Leave Status') }}</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">Payroll</a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.recruitment') }}">
-                        Online Recruitment <span class="label label-pill label-danger count"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('showCalendar') }}">Calendar</a>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" class="dropdown-toggle" data-bs-toggle="collapse" aria-expanded="false">
-                        Settings<i class="fas fa-sort-down" style="margin-left:60%;"></i>
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="{{ route('showState') }}">{{ __('State') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('showCity') }}">{{ __('City') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('showCountry') }}">{{ __('Country') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('showBankname') }}">{{ __('Bank Name') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('showDept') }}">{{ __('Department') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('showJobtitle') }}">{{ __('Job Title') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('showEmployment') }}">{{ __('Employment Type') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('showWRKtime') }}">{{ __('Working Time') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('showLeavetype') }}">{{ __('Leave Type') }}</a>
-                        </li>
-                    </ul>
+                    <a href="{{ route('emp.showCalendar') }}">Calendar</a>
                 </li>
             </ul>
 
@@ -116,10 +87,14 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <span class="label label-pill label-danger count"></span>
                                     <i class="fas fa-bell fa-lg"></i>
                                 </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li style="font-size: 12px;">No Notification Found</li>
+                                </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -144,8 +119,13 @@
                 </div>
             </nav>
 
+            <div class="content-header mt-3">
+                @yield('content-header')
+            </div>
+
+
             <div id="content">
-                <main class="py-4">
+                <main>
                         @yield('content')
                 </main>
             </div>
@@ -168,41 +148,6 @@
             });
 
         });
-        
-        function openForm(evt, formName) {
-            var i, navcontent, navlinks;
-            navcontent = document.getElementsByClassName("navcontent");
-            for (i = 0; i < navcontent.length; i++) {
-                navcontent[i].style.display = "none";
-            }
-
-            navlinks = document.getElementsByClassName("nav-link");
-            for (i = 0; i < navlinks.length; i++) {
-                navlinks[i].className = navlinks[i].className.replace(" active", "");
-            }
-
-            document.getElementById(formName).style.display = "block";
-                evt.currentTarget.className += " active";
-        }
-        document.getElementById("defaultOpen").click();
-        
-        /* $(document).ready(function(){
-
-            function load_unseen_notification(view = '')
-            {
-                $.ajax({
-                    url:"fetch.php",
-                    method:"POST",
-                    data:{view:view},
-                    dataType:"json",
-                    success:function(data)
-                    {
-                        
-                    }
-                })
-            }
-
-        }); */
     </script>
     @yield('script')
     
