@@ -17,7 +17,7 @@ class CreateWorkingtimesTable extends Migration
             $table->bigIncrements('id');
             $table->time('start');
             $table->time('end');
-            $table->double('duration',8,2);
+            $table->double('duration');
             $table->timestamps();
         });
     }

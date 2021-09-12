@@ -192,6 +192,7 @@
         }
         document.getElementById("defaultOpen").click();
     </script>
+    
     @yield('script')
     
 </body>

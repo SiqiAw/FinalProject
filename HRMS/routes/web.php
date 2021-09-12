@@ -5,8 +5,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\QualificationController;
-use App\Http\Controllers\MaritalstatusController;
 use App\Http\Controllers\JobtitleController;
 use App\Http\Controllers\WorkingtimeController;
 use App\Http\Controllers\EmploymentController;
@@ -40,10 +38,10 @@ Route::get('/deleteevent/{id}', [EventController::class, 'delete'])->name('delet
 Route::post('/searchbydate', [EventController::class, 'searchDate'])->name('searchByDate');
 Route::post('/searchevent', [EventController::class, 'search'])->name('searchEvent');
 // full calendar route -> employee
-Route::get('/calendar', [EventController::class, 'emp_calendar_index'])->name('emp.showCalendar');
-Route::get('/calendar/showeventdetail', [EventController::class, 'emp_calendar_show'])->name('emp.showEventList');
-Route::post('/searchbydate', [EventController::class, 'emp_calendar_searchDate'])->name('emp.searchByDate');
-Route::post('/searchevent', [EventController::class, 'emp_calendar_search'])->name('emp.searchEvent');
+Route::get('/empcalendar', [EventController::class, 'emp_calendar_index'])->name('emp.showCalendar');
+Route::get('/empcalendar/showeventdetail', [EventController::class, 'emp_calendar_show'])->name('emp.showEventList');
+Route::post('/empsearchbydate', [EventController::class, 'emp_calendar_searchDate'])->name('emp.searchByDate');
+Route::post('/empsearchevent', [EventController::class, 'emp_calendar_search'])->name('emp.searchEvent');
 
 
 // department setting route
@@ -54,24 +52,6 @@ Route::get('/editdepartment/{id}',[DepartmentController::class,'edit'])->name('e
 Route::post('/updateDepartment',[DepartmentController::class,'update'])->name('updateDept');
 Route::get('/deletedepartment/{id}',[DepartmentController::class,'delete'])->name('deleteDept');
 Route::post('/searchdepartment',[DepartmentController::class,'search'])->name('searchDept');
-
-// qualification setting route
-Route::get('/qualification',[QualificationController::class,'show'])->name('showQualif');
-Route::get('/qualification/addqualif',[QualificationController::class,'create'])->name('showAddQualif');
-Route::post('/qualification/store',[QualificationController::class,'store'])->name('addQualif');
-Route::get('/editqualif/{id}',[QualificationController::class,'edit'])->name('editQualif');
-Route::post('/updatequalif',[QualificationController::class,'update'])->name('updateQualif');
-Route::get('/deletequalif/{id}',[QualificationController::class,'delete'])->name('deleteQualif');
-Route::post('/searchqualif',[QualificationController::class,'search'])->name('searchQualif');
-
-// marital status setting route
-Route::get('/maritalstatus',[MaritalstatusController::class,'show'])->name('showMarital');
-Route::get('/maritalstatus/addMarital',[MaritalstatusController::class,'create'])->name('showAddMarital');
-Route::post('/maritalstatus/store',[MaritalstatusController::class,'store'])->name('addMarital');
-Route::get('/editmarital/{id}',[MaritalstatusController::class,'edit'])->name('editMarital');
-Route::post('/updatemarital',[MaritalstatusController::class,'update'])->name('updateMarital');
-Route::get('/deletemarital/{id}',[MaritalstatusController::class,'delete'])->name('deleteMarital');
-Route::post('/searchmarital',[MaritalstatusController::class,'search'])->name('searchMarital');
 
 // job title setting route
 Route::get('/jobtitle',[JobtitleController::class,'show'])->name('showJobtitle');
@@ -109,15 +89,6 @@ Route::post('/updatecountry',[CountryController::class,'update'])->name('updateC
 Route::get('/deletecountry/{id}',[CountryController::class,'delete'])->name('deleteCountry');
 Route::post('/searchcountry',[CountryController::class,'search'])->name('searchCountry');
 
-// nationality setting route
-Route::get('/nationality',[NationalityController::class,'show'])->name('showNationality');
-Route::get('/nationality/addnationality',[NationalityController::class,'create'])->name('showAddNationality');
-Route::post('/nationality/store',[NationalityController::class,'store'])->name('addNationality');
-Route::get('/editnationality/{id}',[NationalityController::class,'edit'])->name('editNationality');
-Route::post('/updatenationality',[NationalityController::class,'update'])->name('updateNationality');
-Route::get('/deletenationality/{id}',[NationalityController::class,'delete'])->name('deleteNationality');
-Route::post('/searchnationality',[NationalityController::class,'search'])->name('searchNationality');
-
 // bankname setting route
 Route::get('/bankname',[BanknameController::class,'show'])->name('showBankname');
 Route::get('/bankname/addbankname',[BanknameController::class,'create'])->name('showAddBankname');
@@ -154,7 +125,6 @@ Route::post('/updateleavetype',[LeavetypeController::class,'update'])->name('upd
 Route::get('/deleteleavetype/{id}',[LeavetypeController::class,'delete'])->name('deleteLeavetype');
 Route::post('/searchleavetype',[LeavetypeController::class,'search'])->name('searchLeavetype');
 
-
 // online applicant system
 Route::get('/onlinerecruitment',[OnlineApplicantController::class,'show'])->name('showOnlineRecruit');
 Route::post('/onlinerecruitment/store',[OnlineApplicantController::class,'store'])->name('addApplicant');
@@ -163,7 +133,7 @@ Route::get('/adminview/{id}', [OnlineApplicantController::class,'view'])->name('
 Route::get('/adminview/{id}/download',[OnlineApplicantController::class,'download'])->name('resume.download');
 Route::get('/employee/{id}',[OnlineApplicantController::class,'moverecord'])->name('move.record');
 Route::post('onlinerecruitment/search',[OnlineApplicantController::class,'search'])->name('search.applicant');
-//notification
+// send email
 Route::get('/onlinerecruitment/{id}/success',[OnlineApplicantController::class,'sendSuccessful'])->name('send.success');
 Route::get('/onlinerecruitment/{id}/fail',[OnlineApplicantController::class,'sendUnfortunately'])->name('send.fail');
 

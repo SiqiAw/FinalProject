@@ -20,9 +20,8 @@
               <label for="">Duration of Working Time</label>
               <div class="input-group mb-3">
                 <input type="text" class="form-control" id="duration" name="duration" placeholder="Duration of time" value="">
-                <button class="btn btn-warning" type="button" onclick="diff()">Calculate</button>
+                <button class="btn btn-warning" onclick="Calc()">Calculate</button>
               </div>  
-              
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -34,23 +33,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-
-function diff()
-{
-  let start = document.getElementById('start');
-  let end = document.getElementById('end');
-
-  var split1 = start.split(":");
-  var split2 = end.split(":");
-
-  var time1 = split1[0] + split1[1];
-  var time2 = split2[0] + split2[1];
-
-  var diff = time1 - time2;
-
-  document.getElementById('duration'). value = diff;
-}
-
-</script>
