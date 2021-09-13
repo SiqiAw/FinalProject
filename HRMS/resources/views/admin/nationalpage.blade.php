@@ -43,8 +43,8 @@
             @endif
         </div>
 
-        <table id="nationalTableid" class="table table-striped table-bordered">
-            <thead class="table-dark">
+        <table id="nationalTableid" class="table table-bordered table-hover">
+            <thead>
                 <tr>
                     <th width="5%">ID</th>
                     <th>National</th>
