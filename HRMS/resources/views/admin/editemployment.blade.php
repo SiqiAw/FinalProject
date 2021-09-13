@@ -9,10 +9,7 @@
         <div class="modal-body">
           <form method="post" action="{{route('updateEmployment')}}" enctype="multipart/form-data">
             @csrf 
-                <div class="mb-3">
-                    <label>Employment ID</label>
-                    <input type="text" class="form-control" id="ID" name="ID" value="{{ $employment->id }}">
-                </div>
+                <input type="hidden" class="form-control" id="ID" name="ID" value="{{ $employment->id }}">
                 <div class="mb-3">
                     <label>Employment Name</label>
                     <input type="text" class="form-control" id="employment_name" name="employment_name" value="{{ $employment->employment_name }}">

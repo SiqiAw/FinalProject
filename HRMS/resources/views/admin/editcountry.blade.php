@@ -8,10 +8,7 @@
         <div class="modal-body">
           <form method="post" action="{{route('updateCountry')}}" enctype="multipart/form-data">
             @csrf 
-                <div class="mb-3">
-                    <label>Country ID</label>
-                    <input type="text" class="form-control" id="ID" name="ID" value="{{ $country->id }}">
-                </div>
+                <input type="hidden" class="form-control" id="ID" name="ID" value="{{ $country->id }}">
                 <div class="mb-3">
                     <label>Country Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $country->name }}">

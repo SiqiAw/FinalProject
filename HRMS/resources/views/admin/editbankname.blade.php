@@ -9,10 +9,7 @@
         <div class="modal-body">
           <form method="post" action="{{route('updateBankname')}}" enctype="multipart/form-data">
             @csrf 
-                <div class="mb-3">
-                    <label>Bank ID</label>
-                    <input type="text" class="form-control" id="ID" name="ID" value="{{ $bankname->id }}">
-                </div>
+                <input type="hidden" class="form-control" id="ID" name="ID" value="{{ $bankname->id }}"> 
                 <div class="mb-3">
                     <label>Bank</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $bankname->name }}">

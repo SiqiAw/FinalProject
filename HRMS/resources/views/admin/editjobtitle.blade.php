@@ -9,10 +9,7 @@
         <div class="modal-body">
           <form method="post" action="{{route('updateJobtitle')}}" enctype="multipart/form-data">
             @csrf 
-                <div class="mb-3">
-                    <label>Job Title ID</label>
-                    <input type="text" class="form-control" id="ID" name="ID" value="{{ $jobtitle->id }}">
-                </div>
+                <input type="hidden" class="form-control" id="ID" name="ID" value="{{ $jobtitle->id }}">
                 <div class="mb-3">
                     <label>Job Title</label>
                     <input type="text" class="form-control" id="jobtitle_name" name="jobtitle_name" value="{{ $jobtitle->jobtitle_name }}">

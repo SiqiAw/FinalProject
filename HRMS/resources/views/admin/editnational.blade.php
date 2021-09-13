@@ -4,15 +4,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Edit National</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form method="post" action="{{route('updateNational')}}" enctype="multipart/form-data">
             @csrf 
-                <div class="mb-3">
-                    <label>ID</label>
-                    <input type="text" class="form-control" id="ID" name="ID" value="{{ $nationality->id }}">
-                </div>
+                <input type="hidden" class="form-control" id="ID" name="ID" value="{{ $nationality->id }}">
                 <div class="mb-3">
                     <label>National</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $nationality->name }}">

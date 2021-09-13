@@ -9,10 +9,7 @@
         <div class="modal-body">
           <form method="post" action="{{route('updateWRKtime')}}" enctype="multipart/form-data">
             @csrf 
-              <div class="mb-3">
-                  <label>Working Time ID</label>
-                  <input type="text" class="form-control" id="ID" name="ID" value="{{ $workingtime->id }}">
-              </div>
+              <input type="hidden" class="form-control" id="ID" name="ID" value="{{ $workingtime->id }}">
               <div class="mb-3">
                   <label>Start Time</label>
                   <input type="time" class="form-control" id="start" name="start" value="{{ $workingtime->start }}">

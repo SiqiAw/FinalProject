@@ -9,10 +9,7 @@
         <div class="modal-body">
           <form method="post" action="{{route('updateCity')}}" enctype="multipart/form-data">
             @csrf 
-                <div class="mb-3">
-                    <label>City ID</label>
-                    <input type="text" class="form-control" id="ID" name="ID" value="{{ $city->id }}">
-                </div>
+                <input type="hidden" class="form-control" id="ID" name="ID" value="{{ $city->id }}">
                 <div class="mb-3">
                     <label>City Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $city->name }}">
