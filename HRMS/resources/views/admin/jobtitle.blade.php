@@ -46,6 +46,7 @@
                     <th width="15%" style="text-align:center;">Action</th>
                 </tr>
             </thead>
+            <tbody>
             @foreach($jobtitles as $jobtitle)
             <tr>
                 <td>{{ $jobtitle->id }}</td>
@@ -64,6 +65,7 @@
                 @include('admin.editjobtitle')
             </tr>
             @endforeach
+            </tbody>
         </table>
         <a href="{{ route('showJobtitle') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
             Back

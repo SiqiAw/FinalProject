@@ -71,6 +71,9 @@
                             <a href="{{ route('showCountry') }}">{{ __('Country') }}</a>
                         </li>
                         <li>
+                            <a href="{{ route('showNational') }}">{{ __('National') }}</a>
+                        </li>
+                        <li>
                             <a href="{{ route('showBankname') }}">{{ __('Bank Name') }}</a>
                         </li>
                         <li>

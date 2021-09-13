@@ -20,27 +20,6 @@
 @section('content')
 
 @include('admin.addworkingtime')
-
-<script>
-
-    function Calc()
-    {
-        var start = document.getElementById('start').value;
-        var end = document.getElementById('end').value;
-
-        var split1 = "{start}".split(":");
-        var split2 = "{end}".split(":");
-
-        var time1 = split1[0] + split1[1] + split1[2];
-        var time2 = split2[0] + split2[1] + split2[2];
-
-        var diff = time2 - time1;
-
-        document.getElementById("duration").value = diff;
-    }
-
-</script>
-
     <div class="container">
 
         <div style="margin-bottom: 20px;">

@@ -1,5 +1,4 @@
-<form method="post" action="{{route('updateWRKtime')}}" enctype="multipart/form-data">
-  @csrf 
+
   <div class="modal fade" id="editWRKtime{{$workingtime->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -8,6 +7,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <form method="post" action="{{route('updateWRKtime')}}" enctype="multipart/form-data">
+            @csrf 
               <div class="mb-3">
                   <label>Working Time ID</label>
                   <input type="text" class="form-control" id="ID" name="ID" value="{{ $workingtime->id }}">
@@ -31,8 +32,8 @@
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Update</button>
               </div>
+          </form>
         </div> 
       </div>
     </div>
   </div>
-</form>
