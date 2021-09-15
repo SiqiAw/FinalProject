@@ -15,7 +15,7 @@ use App\Models\Employee;
 use App\Models\Nationality;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use Notification;
+use Illuminate\Notifications\Notification;
 use App\Notifications\Congratulation;
 use App\Notifications\Unfortunately;
 
@@ -55,7 +55,6 @@ class OnlineApplicantController extends Controller
             'address' => $request -> address,
             'city' => $request -> city,
             'state' => $request -> state,
-            'zipcode' => $request -> zipcode,
             'country' => $request -> country,
             'position_applied' => $request -> position,
             'expected_salary' => $request -> Esalary,
@@ -63,7 +62,6 @@ class OnlineApplicantController extends Controller
             'image' => $imageName,
             'emergency_contact_name'  => $request -> Ename,
             'emergency_contact_number' => $request -> Ephone,
-            'relation_emergency' => $request -> Erelation,
         ]);
         
         return view('guest.recruitment');
@@ -162,7 +160,7 @@ class OnlineApplicantController extends Controller
         Notification::send($onlineapplicants, new Congratulation($successdetails));
 
         Session::flash('success', "Email successfully send.");
-        return redirect()->route('admin.recruitment');
+        return redirect()->route('admin.onlinerecruitment.recruitment');
     }
 
     public function sendUnfortunately($id)
@@ -181,7 +179,7 @@ class OnlineApplicantController extends Controller
         Notification::send($onlineapplicants, new Unfortunately($faildetails));
 
         Session::flash('success', "Email successfully send.");
-        return redirect()->route('admin.recruitment');
+        return redirect()->route('admin.onlinerecruitment.recruitment');
     }
     
 }

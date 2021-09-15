@@ -12,7 +12,16 @@
                 <input type="hidden" class="form-control" id="ID" name="ID" value="{{ $jobtitle->id }}">
                 <div class="mb-3">
                     <label>Job Title</label>
-                    <input type="text" class="form-control" id="jobtitle_name" name="jobtitle_name" value="{{ $jobtitle->jobtitle_name }}">
+                    <select name= "position" id= "position" class="form-control">
+                      @foreach($positions as $position)
+                        <option value="{{ $position->name }}" 
+                        @if($jobtitle->jobtitle_name==$position->name)
+                        selected
+                        @endif
+                        >{{ $position->name }}
+                        </option>
+                      @endforeach
+                  </select>
                 </div>
                 <div class="mb-3">
                   <label>Department</label>

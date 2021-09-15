@@ -138,7 +138,16 @@
                     <div class="card">
                     <div class="card-body bg-danger">
                         <div class="inner">
-                            <h3>150</h3>
+                            <?php
+                                $connection = mysqli_connect("localhost","root","","hrms");
+                        
+                                $query = "SELECT id FROM events ORDER BY id";
+                                $query_run = mysqli_query($connection, $query);
+
+                                $row = mysqli_num_rows($query_run);
+
+                                echo '<h3> '.$row.' </h3>';
+                            ?>
 
                             <p>Events</p>
                         </div>

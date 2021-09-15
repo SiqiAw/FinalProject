@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\JobtitleController;
 use App\Http\Controllers\WorkingtimeController;
 use App\Http\Controllers\EmploymentController;
@@ -55,6 +56,15 @@ Route::get('/editdepartment/{id}',[DepartmentController::class,'edit'])->name('e
 Route::post('/updateDepartment',[DepartmentController::class,'update'])->name('updateDept');
 Route::get('/deletedepartment/{id}',[DepartmentController::class,'delete'])->name('deleteDept');
 Route::post('/searchdepartment',[DepartmentController::class,'search'])->name('searchDept');
+
+// position setting route
+Route::get('/position',[PositionController::class,'show'])->name('showPosition');
+Route::get('/position/addposition',[PositionController::class,'create'])->name('showAddPosition');
+Route::post('/position/store',[PositionController::class,'store'])->name('addPosition');
+Route::get('/editposition/{id}',[PositionController::class,'edit'])->name('editPosition');
+Route::post('/updateposition',[PositionController::class,'update'])->name('updatePosition');
+Route::get('/deleteposition/{id}',[PositionController::class,'delete'])->name('deletePosition');
+Route::post('/searchpositiont',[PositionController::class,'search'])->name('searchPosition');
 
 // job title setting route
 Route::get('/jobtitle',[JobtitleController::class,'show'])->name('showJobtitle');

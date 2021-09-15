@@ -42,7 +42,7 @@
                     <th width="5%">ID</th>
                     <th width="20%">Job Title</th>
                     <th width="30%">Department</th>
-                    <th>Description</th>
+                    <th>Rate per Hour</th>
                     <th width="15%" style="text-align:center;">Action</th>
                 </tr>
             </thead>
@@ -52,7 +52,7 @@
                 <td>{{ $jobtitle->id }}</td>
                 <td>{{ $jobtitle->jobtitle_name }}</td>
                 <td>{{ $jobtitle->department_id }}</td>
-                <td>{{ $jobtitle->description }}</td>
+                <td>{{ $jobtitle->rate_per_hour }}</td>
                     
                 <td style="text-align:center;">
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editJobtitle{{$jobtitle->id}}">
@@ -67,9 +67,6 @@
             @endforeach
             </tbody>
         </table>
-        <a href="{{ route('showJobtitle') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
-            Back
-        </a>
     </div>
 @endsection
 

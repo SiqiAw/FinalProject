@@ -17,29 +17,22 @@ function openForm(evt, formName) {
 
 document.getElementById("defaultOpen").click();
 
-// select search
-$(document).ready(function(){
-  $('.search_select_box select').selectpicker();
-})
-
-// validation form
 const form = document.getElementById('form');
 const noic = document.getElementById('noic');
 const email = document.getElementById('email');
 const phone_num = document.getElementById('phone');
-const zipcode = document.getElementById('zipcode');
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   checkInputs();
-})
+});
 
 function checkInputs() {
   // need to get the value from the input first
-  const noicValue = noic.value.trim()
-  const emailValue = email.value.trim()
-  const zipcodeValue = zipcode.value.trim()
+  const noicValue = noic.value.trim();
+  const emailValue = email.value.trim();
+  const phoneValue = phone_num.value.trim();
 
   if (noicValue === "") {
     setFourErrorFor(noic, "NOIC cannot be blank.");
@@ -57,14 +50,14 @@ function checkInputs() {
     setSixSuccessFor(email);
   }
   
-  if (zipcodeValue === "") {
-    setTwoErrorFor(zipcode, "Zip Code cannot be blank.");
-  } else if (!isZipcode(zipcodeValue)) {
-    setTwoErrorFor(zipcode, "Zip Code is not valid");
+  if (phoneValue === "") {
+    setFourErrorFor(phone_num, "Phone number cannot be blank.");
+  } else if (!isZipcode(phoneValue)) {
+    setFourErrorFor(phone_num, "Phone number is not valid");
   } else {
-    setTwoSuccessFor(zipcode);
+    setFourErrorFor(phone_num);
   }
-
+  
 }
 
 function isNOIC() {
@@ -75,9 +68,10 @@ function isEmail() {
   return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
-function isZipcode() {
-  return /^[0-9]$/.test(zipcode);
+function isPhone() {
+    return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(phone_num);
 }
+
 
 function setSixErrorFor(input, message) {
   const formGroup = input.parentElement;
@@ -103,21 +97,11 @@ function setFourSuccessFor(input) {
   formGroup.className = 'form-group col-md-4 success';
 }
 
-function setTwoErrorFor(input, message) {
-  const formGroup = input.parentElement;
-  const small = formGroup.querySelector('small');
+$(document).ready(function(){
+  $('.search_select_box select').selectpicker();
+})
 
-  small.innerText = message;
 
-  formGroup.className = 'form-group col-md-2 error';
-}
-
-function setTwoSuccessFor(input) {
-  const formGroup = input.parentElement;
-  formGroup.className = 'form-group col-md-2 success';
-}
-
-// submit button
 (function() {
   $('form input').keyup(function() {
 

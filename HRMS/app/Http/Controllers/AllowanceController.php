@@ -11,7 +11,7 @@ class AllowanceController extends Controller
 {
     function create() 
     {
-        return view('payroll.admin.addallowance');
+        return view('admin.payroll.addallowance');
     }
 
     function store(Request $request) 
@@ -34,13 +34,13 @@ class AllowanceController extends Controller
     function show()
     {
         $allowances = Allowance::all();
-        return view('payroll.admin.allowancepage')->with('allowances', $allowances);
+        return view('admin.payroll.allowancepage')->with('allowances', $allowances);
     }
 
     function edit($id) 
     {
         $allowances = Allowance::find($id);
-        return view('payroll.admin.editallowance', compact('allowances','id'));
+        return view('admin.payroll.editallowance', compact('allowances','id'));
     }
 
     function update(Request $request)

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
-use Session;
-use DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -150,13 +150,13 @@ class EventController extends Controller
         }
         
         $calendar = Calendar::addEvents($events);
-        return view('employee.calendarpage', compact('calendar'));
+        return view('employee.fullcalendar.calendarpage', compact('calendar'));
     }
 
     public function emp_calendar_show(Request $request)
     {
         $events = Event::all();
-        return view('employee.eventlist')->with('events', $events);
+        return view('employee.fullcalendar.eventlist')->with('events', $events);
     }
 
     public function emp_calendar_searchDate()
@@ -168,7 +168,7 @@ class EventController extends Controller
         ->orWhere('end_date', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('employee.eventlist')->with('events', $events);
+        return view('employee.fullcalendar.eventlist')->with('events', $events);
     }
 
     public function emp_calendar_search()
@@ -180,7 +180,7 @@ class EventController extends Controller
         ->orWhere('start_date', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('employee.eventlist')->with('events', $events);
+        return view('employee.fullcalendar.eventlist')->with('events', $events);
     }
 
 }

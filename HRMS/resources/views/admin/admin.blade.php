@@ -87,7 +87,17 @@
                     <div class="card">
                     <div class="card-body bg-info">
                         <div class="inner">
-                            <h3>150</h3>
+
+                            <?php
+                                $connection = mysqli_connect("localhost","root","","hrms");
+                        
+                                $query = "SELECT id FROM employees ORDER BY id";
+                                $query_run = mysqli_query($connection, $query);
+
+                                $row = mysqli_num_rows($query_run);
+
+                                echo '<h3> '.$row.' </h3>';
+                            ?>
 
                             <p>Employees</p>
                         </div>
@@ -104,7 +114,16 @@
                     <div class="card">
                         <div class="card-body bg-success">
                             <div class="inner">
-                                <h3>150</h3>
+                                <?php
+                                    $connection = mysqli_connect("localhost","root","","hrms");
+                            
+                                    $query = "SELECT id FROM online_applicants ORDER BY id";
+                                    $query_run = mysqli_query($connection, $query);
+
+                                    $row = mysqli_num_rows($query_run);
+
+                                    echo '<h3> '.$row.' </h3>';
+                                ?>
 
                                 <p>Online Applicants</p>
                             </div>
@@ -121,7 +140,16 @@
                     <div class="card">
                     <div class="card-body bg-warning">
                         <div class="inner">
-                            <h3>150</h3>
+                            <?php
+                                $connection = mysqli_connect("localhost","root","","hrms");
+                        
+                                $query = "SELECT id FROM leave_types ORDER BY id";
+                                $query_run = mysqli_query($connection, $query);
+
+                                $row = mysqli_num_rows($query_run);
+
+                                echo '<h3> '.$row.' </h3>';
+                            ?>
 
                             <p>Leave Types</p>
                         </div>
@@ -138,7 +166,16 @@
                     <div class="card">
                     <div class="card-body bg-danger">
                         <div class="inner">
-                            <h3>150</h3>
+                            <?php
+                                $connection = mysqli_connect("localhost","root","","hrms");
+                        
+                                $query = "SELECT id FROM events ORDER BY id";
+                                $query_run = mysqli_query($connection, $query);
+
+                                $row = mysqli_num_rows($query_run);
+
+                                echo '<h3> '.$row.' </h3>';
+                            ?>
 
                             <p>Events</p>
                         </div>

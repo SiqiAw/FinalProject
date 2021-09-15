@@ -10,7 +10,13 @@
             @csrf        
             <div class="mb-3">
                 <label for="">Job Title</label>
-                <input class="form-control" id="jobtitle_name" name="jobtitle_name" placeholder="Enter job title" />      
+                <select name="position" id="position" class="form-control">
+                    @foreach($positions as $position)
+                        <option value="{{ $position->name }}">
+                            {{ $position->name }}
+                        </option>
+                    @endforeach
+                </select>      
             </div>
             <div class="mb-3">
                 <label for="">Department</label>

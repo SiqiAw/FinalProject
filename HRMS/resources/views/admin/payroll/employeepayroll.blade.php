@@ -63,8 +63,9 @@
                     <td>{{ $payroll->net }}</td>
                         
                     <td style="text-align:center;">
-                    <a href="#" type="button" class="btn btn-success">
-                        <i class="bi bi-plus" data-bs-toggle="tooltip" data-bs-placement="bottom" title="view detail"></i>
+                    <a href="{{ route('viewPayrollDetail', ['id' => $payroll->id]) }}" class="btn btn-primary"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="view detail">
+                        <i class="bi bi-eye"></i>
                     </a>
                     </td>
                 </tr>

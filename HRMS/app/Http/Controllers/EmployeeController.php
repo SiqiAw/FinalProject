@@ -11,4 +11,5 @@ class EmployeeController extends Controller
     {
         return view('admin.employeepage')->with("employees", Employee::all());
     }
+
 }

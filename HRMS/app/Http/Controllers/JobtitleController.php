@@ -5,21 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jobtitle;
 use App\Models\Department;
-use Session;
-use DB;
+use App\Models\Position;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class JobtitleController extends Controller
 {
     function create()
     {
-        return view('admin.settings.addjobtitle')->with('departments', Department::all());
+        return view('admin.settings.addjobtitle')
+        ->with('departments', Department::all())
+        ->with('positions', Position::all());
     }
 
     function store(Request $request)
     {
         $addDepartment = Jobtitle::create([    //step 3 bind data
             'id'=>$request->ID, //add on 
-            'jobtitle_name'=>$request->jobtitle_name, //fullname from HTML
+            'jobtitle_name'=>$request->position, //fullname from HTML
             'department_id'=>$request->department,
             'rate_per_hour'=>$request->rate_per_hour,
             
@@ -33,7 +36,8 @@ class JobtitleController extends Controller
     {
         $jobtitles = Jobtitle::all();
         return view('admin.settings.jobtitle')->with('jobtitles', $jobtitles)
-                                     ->with('departments', Department::all());
+                                     ->with('departments', Department::all())
+                                     ->with('positions', Position::all());
     }
 
     function edit($id)
@@ -41,7 +45,8 @@ class JobtitleController extends Controller
         $jobtitles = Jobtitle::all()->where('id',$id);
 
         return view('admin.settings.jobtitle')->with('jobtitles',$jobtitles)
-                                     ->with('departments', Department::all());
+                                     ->with('departments', Department::all())
+                                     ->with('positions', Position::all());
 
     }
 
@@ -50,7 +55,7 @@ class JobtitleController extends Controller
         $r=request();//retrive submited form data 
         $jobtitles = Jobtitle::find($r->ID);
 
-        $jobtitles->jobtitle_name=$r->jobtitle_name;
+        $jobtitles->jobtitle_name=$r->position;
         $jobtitles->department_id=$r->department;
         $jobtitles->rate_per_hour=$r->rate_per_hour;
         

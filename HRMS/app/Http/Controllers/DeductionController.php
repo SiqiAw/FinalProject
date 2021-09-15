@@ -11,7 +11,7 @@ class DeductionController extends Controller
 {
     function create() 
     {
-        return view('payroll.admin.adddeduction');
+        return view('admin.payroll.adddeduction');
     }
 
     function store(Request $request) 

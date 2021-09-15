@@ -1,4 +1,15 @@
 @extends('layouts.online')
+
+@section('css')
+<style>
+    .search_select_box button {
+        height: 30px;
+        font-size: 12px;
+    }
+
+</style>
+@endsection
+
 @section('content')
 
     <div class="container">
@@ -8,7 +19,7 @@
             <button class="tablinks" onclick="openForm(event, 'EmergencyContact')">Emergency Contact</button>
         </div>
 
-        <form method="post" action="{{ route('addApplicant') }}"  enctype="multipart/form-data">
+        <form id="form" method="post" action="{{ route('addApplicant') }}"  enctype="multipart/form-data">
             @csrf
 
             <!-- About Me -->
@@ -20,17 +31,17 @@
                     </h4>
                     <div class="form-group col-sm-12">
                         <label for="" class="form-label">Name <span class="asterisk">*</span></label>
-                        <input type="text" class="form-control" id="name" name="name" onkeyup="toUpperCase()" required>
+                        <input type="text" class="form-control form-control-sm" id="name" name="name" onkeyup="toUpperCase()" required>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="" class="form-label">NOIC <span class="asterisk">*</span></label>
-                        <input type="text" class="form-control" id="noic" name="noic" required>
+                        <input type="text" class="form-control form-control-sm" id="noic" name="noic" placeholder="i.e 000000-00-0000" required>
                         <small>Error Message</small>
                     </div>
                     
                     <div class="form-group col-sm-4">
                         <label for="" class="form-label">Date Of Birth <span class="asterisk">*</span></label>
-                        <input type="date" class="form-control" id="dob" name="dob" required>
+                        <input type="date" class="form-control form-control-sm" id="dob" name="dob" required>
                     </div>
                     <div class="form-group col-sm-4" style="padding-top: 50px; padding-left: 30px;">
                         <div class="form-check form-check-inline">
@@ -96,19 +107,19 @@
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="" class="form-label">Email <span class="asterisk">*</span></label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control form-control-sm" id="email" name="email" required>
                         <small>Error Message</small>
                     </div>
                     
                     <div class="form-group col-sm-6">
                         <label for="" class="form-label">Phone Number <span class="asterisk">*</span></label>
-                        <input type="text" class="form-control" id="phone" name="phone">
+                        <input type="text" class="form-control form-control-sm" id="phone" name="phone" placeholder="+00000000000" required>
                         <small>Error Message</small>
                     </div>
                     
                     <div class="form-group col-sm-12">
                         <label for="" class="form-label">Address <span class="asterisk">*</span></label>
-                        <textarea type="text" class="form-control" name="address" id="address"></textarea>
+                        <textarea type="text" class="form-control form-control-sm" name="address" id="address" required></textarea>
                     </div>
                     <div class="search_select_box form-group col-sm-4">
                         <label for="" class="form-label">City <span class="asterisk">*</span></label><br/>
@@ -129,11 +140,6 @@
                                 </option>
                             @endforeach
                         </select>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="" class="form-label">Zip Code <span class="asterisk">*</span></label>
-                        <input type="text" class="form-control" id="zipcode" name="zipcode" required>
-                        <small>Error Message</small>
                     </div>
                     <div class="search_select_box form-group col-sm-4">
                         <label for="" class="form-label">Country <span class="asterisk">*</span></label>
@@ -157,7 +163,7 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="" class="form-label">Expected Salary (RM)</label>
-                        <input type="text" class="form-control" id="Esalary" name="Esalary">
+                        <input type="text" class="form-control form-control-sm" id="Esalary" name="Esalary">
                     </div>
                 </div>
             </div>
@@ -173,7 +179,7 @@
                         <li>File name as <strong>name.filetype</strong></li>
                     </ul>
                     <div class="form-group col-sm-12" style="padding: 5%;">
-                        <input type="file" class="form-control-file" name="resume-file" id="resume" required>
+                        <input type="file" class="form-control-file form-control-sm" name="resume-file" id="resume" required>
                     </div>
                 </div>
                 <div class="form-row" style="padding: 5%;">
@@ -184,7 +190,7 @@
                         <li>Recommended dimension of photo : <strong>150 x 150 pixels</strong></li>
                     </ul>
                     <div class="form-group col-sm-12" style="padding: 5%;">
-                        <input type="file" class="form-control-file" name="profile-image" id="image" required>
+                        <input type="file" class="form-control-file form-control-sm" name="profile-image" id="image" required>
                     </div>
                 </div>
             </div>
@@ -196,16 +202,12 @@
                     <h4 class="mb-3">Emergency Contact</h4>
                     <div class="form-group col-sm-12">
                         <label for="" class="form-label">Name <span class="asterisk">*</span></label>
-                        <input type="text" class="form-control" id="Ename" name="Ename" onkeyup="toUpperCase()" required>
+                        <input type="text" class="form-control form-control-sm" id="Ename" name="Ename" onkeyup="toUpperCase()" required>
                     </div>
                     <div class="form-group col-sm-12">
                         <label for="" class="form-label">Phone Number <span class="asterisk">*</span></label>
-                        <input type="text" class="form-control" id="Ephone" name="Ephone" required>
+                        <input type="text" class="form-control form-control-sm" id="Ephone" name="Ephone" required>
                     </div> 
-                    <div class="form-group col-sm-12">
-                        <label for="" class="form-label">Relationship <span class="asterisk">*</span></label>
-                        <input type="text" class="form-control" id="Erelation" name="Erelation" required>
-                    </div>
                 </div>
             </div>
             <!-- End Emergency Contact -->
@@ -215,4 +217,8 @@
             </button>
         </form>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript" src="{{ asset('js/validation.js') }}"></script>
 @endsection
