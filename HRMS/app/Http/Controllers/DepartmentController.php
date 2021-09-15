@@ -11,7 +11,7 @@ class DepartmentController extends Controller
 {
     function create()
     {
-        return view('admin.adddepartment');
+        return view('admin.settings.adddepartment');
     }
 
     function store(Request $request)
@@ -31,13 +31,13 @@ class DepartmentController extends Controller
     function show()
     {
         $departments = Department::all();
-        return view('admin.departmentpage')->with('departments', $departments);
+        return view('admin.settings.departmentpage')->with('departments', $departments);
     }
 
     function edit($id)
     {
         $departments = Department::find($id);
-        return view('admin.editdepartment',compact('departments','id'));
+        return view('admin.settings.editdepartment',compact('departments','id'));
     }
 
     function update()
@@ -68,6 +68,6 @@ class DepartmentController extends Controller
         ->where('department_name', 'like', '%' . $keyword . '%')
         ->get();
         
-        return view('admin.departmentpage')->with('departments', $departments);
+        return view('admin.settings.departmentpage')->with('departments', $departments);
     }
 }

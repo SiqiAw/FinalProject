@@ -12,7 +12,7 @@ class EmploymentController extends Controller
 {
     function create()
     {
-        return view('admin.addemployment')->with('workingtimes', Workingtime::all());
+        return view('admin.settings.addemployment')->with('workingtimes', Workingtime::all());
     }
 
     function store(Request $request)
@@ -30,7 +30,7 @@ class EmploymentController extends Controller
     function show()
     {
         $employments = Employment::all();
-        return view('admin.employmentpage')->with('employments', $employments)
+        return view('admin.settings.employmentpage')->with('employments', $employments)
                                            ->with('workingtimes', Workingtime::all());
     }
 
@@ -38,7 +38,7 @@ class EmploymentController extends Controller
     {
         $employments = Employment::all()->where('id',$id);
 
-        return view('admin.employmentpage')->with('employments', $employments)
+        return view('admin.settings.employmentpage')->with('employments', $employments)
                                            ->with('wokingtimes', Workingtime::all());
     }
 

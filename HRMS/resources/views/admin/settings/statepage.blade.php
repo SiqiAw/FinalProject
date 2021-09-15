@@ -4,13 +4,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h3 class="m-0">City</h3>
+                <h3 class="m-0">State</h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end mt-2">
                     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                     <li class="breadcrumb-item active">Settings</li>
-                    <li class="breadcrumb-item active">City</li>
+                    <li class="breadcrumb-item active">State</li>
                 </ol>
             </div>
         </div>
@@ -18,16 +18,16 @@
 @endsection
 
 @section('content')
-@include('admin.addcity')
+@include('admin.settings.addstate')
 
     <div class="container">
 
         <div style="margin-bottom: 20px;">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCity">
-                Add City
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addState">
+                Add State
             </button>
             <div class="col-md-3" style="float:right;">
-                <form class="input-group" method="post" action="{{ route('searchCity') }}">
+                <form class="input-group" method="post" action="{{ route('searchState') }}">
                     @csrf
                     <input type="text" class="form-control" id="search" name="search" placeholder="search">
                     <button class="btn btn-dark" type="submit">Search</button>
@@ -43,32 +43,32 @@
             @endif
         </div>
 
-        <table id="cityTableid" class="table table-bordered table-hover">
+        <table id="stateTableid" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th width="5%">ID</th>
-                    <th>City Name</th>
-                    <th style="text-align:center;">Action</th>
+                    <th>State</th>
+                    <th width="20%" style="text-align:center;">Action</th>
                 </tr>
             </thead>
-            @foreach($cities as $city)
+            @foreach($states as $state)
             <tr>
-                <td>{{ $city->id }}</td>
-                <td>{{ $city->name }}</td>
+                <td>{{ $state->id }}</td>
+                <td>{{ $state->name }}</td>
                     
                 <td style="text-align:center;">
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editCity{{$city->id}}">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editState{{$state->id}}">
                         <i class="bi bi-pencil-square"></i>
                     </button>
-                    <a href="{{ route('deleteCity', ['id' => $city->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this city?')">
+                    <a href="{{ route('deleteState', ['id' => $state->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this state?')">
                         <i class="bi bi-trash-fill"></i>
                     </a>
                 </td>
-                @include('admin.editcity')
+                @include('admin.settings.editstate')
             </tr>
             @endforeach
         </table>
-        <a href="{{ route('showCity') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
+        <a href="{{ route('showState') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
             Back
         </a>
     </div>
@@ -77,7 +77,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#cityTableid').DataTable({
+            $('#stateTableid').DataTable({
                 "pagingType": "full_numbers",
                 "searching": false,
             });

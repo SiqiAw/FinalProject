@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-@include('admin.addnational')
+@include('admin.settings.addnational')
 
     <div class="container">
 
@@ -65,7 +65,7 @@
                             <i class="bi bi-trash-fill"></i>
                         </a>
                     </td>
-                    @include('admin.editnational')
+                    @include('admin.settings.editnational')
                 </tr>
             @endforeach
             </tbody>

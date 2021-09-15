@@ -12,7 +12,7 @@ class JobtitleController extends Controller
 {
     function create()
     {
-        return view('admin.addjobtitle')->with('departments', Department::all());
+        return view('admin.settings.addjobtitle')->with('departments', Department::all());
     }
 
     function store(Request $request)
@@ -21,7 +21,7 @@ class JobtitleController extends Controller
             'id'=>$request->ID, //add on 
             'jobtitle_name'=>$request->jobtitle_name, //fullname from HTML
             'department_id'=>$request->department,
-            'description'=>$request->description,
+            'rate_per_hour'=>$request->rate_per_hour,
             
         ]);
         
@@ -32,7 +32,7 @@ class JobtitleController extends Controller
     function show()
     {
         $jobtitles = Jobtitle::all();
-        return view('admin.jobtitle')->with('jobtitles', $jobtitles)
+        return view('admin.settings.jobtitle')->with('jobtitles', $jobtitles)
                                      ->with('departments', Department::all());
     }
 
@@ -40,7 +40,7 @@ class JobtitleController extends Controller
     {
         $jobtitles = Jobtitle::all()->where('id',$id);
 
-        return view('admin.jobtitle')->with('jobtitles',$jobtitles)
+        return view('admin.settings.jobtitle')->with('jobtitles',$jobtitles)
                                      ->with('departments', Department::all());
 
     }
@@ -52,7 +52,7 @@ class JobtitleController extends Controller
 
         $jobtitles->jobtitle_name=$r->jobtitle_name;
         $jobtitles->department_id=$r->department;
-        $jobtitles->description=$r->description;
+        $jobtitles->rate_per_hour=$r->rate_per_hour;
         
         $jobtitles->save();
         return redirect()->route('showJobtitle');

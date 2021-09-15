@@ -12,7 +12,7 @@ class NationalityController extends Controller
 {
     function create()
     {
-        return view('admin.addnational');
+        return view('admin.settings.addnational');
     }
 
     function store(Request $request)
@@ -34,13 +34,13 @@ class NationalityController extends Controller
     function show()
     {
         $nationalities = Nationality::all();
-        return view('admin.nationalpage')->with('nationalities', $nationalities);
+        return view('admin.settings.nationalpage')->with('nationalities', $nationalities);
     }
 
     function edit($id)
     {
         $nationalities = Nationality::find($id);
-        return view('admin.editnational', compact('nationalities','id'));
+        return view('admin.settings.editnational', compact('nationalities','id'));
     }
 
     function update()
@@ -71,6 +71,6 @@ class NationalityController extends Controller
         ->where('name', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('admin.nationalpage')->with('nationalities', $nationalities);
+        return view('admin.settings.nationalpage')->with('nationalities', $nationalities);
     }
 }

@@ -87,8 +87,11 @@
                         <label for="" class="form-label">Nationality <span class="asterisk">*</span></label>
                         <select id="nationality" name="nationality" data-live-search="true">
                         <option value="" selected>-- Select Nationality --</option>
-                        <option value="Malaysian">Malaysian</option>
-                        <option value="Non-Malaysian">Non-Malaysian</option>
+                            @foreach ($nationalities as $nationality)
+                                <option value="{{ $nationality -> name }}">
+                                    {{ $nationality -> name }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group col-sm-6">

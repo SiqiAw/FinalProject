@@ -16,6 +16,10 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\LeavetypeController;
 use App\Http\Controllers\OnlineApplicantController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AllowanceController;
+use App\Http\Controllers\DeductionController;
+use App\Http\Controllers\OvertimeController;
+use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\TestController;
 
 Route::get('/', function () {
@@ -42,7 +46,6 @@ Route::get('/empcalendar', [EventController::class, 'emp_calendar_index'])->name
 Route::get('/empcalendar/showeventdetail', [EventController::class, 'emp_calendar_show'])->name('emp.showEventList');
 Route::post('/empsearchbydate', [EventController::class, 'emp_calendar_searchDate'])->name('emp.searchByDate');
 Route::post('/empsearchevent', [EventController::class, 'emp_calendar_search'])->name('emp.searchEvent');
-
 
 // department setting route
 Route::get('/department',[DepartmentController::class,'show'])->name('showDept');
@@ -145,6 +148,32 @@ Route::post('onlinerecruitment/search',[OnlineApplicantController::class,'search
 // send email
 Route::get('/onlinerecruitment/{id}/success',[OnlineApplicantController::class,'sendSuccessful'])->name('send.success');
 Route::get('/onlinerecruitment/{id}/fail',[OnlineApplicantController::class,'sendUnfortunately'])->name('send.fail');
+
+//-------- payroll system ----------//
+// allowance setting route
+Route::get('/allowance',[AllowanceController::class,'show'])->name('showAllowance');
+Route::get('/allowance/addallowance',[AllowanceController::class,'create'])->name('showAddAllowance');
+Route::post('/allowance/store',[AllowanceController::class,'store'])->name('addAllowance');
+Route::get('/editallowance/{id}',[AllowanceController::class,'edit'])->name('editAllowance');
+Route::post('/updateallowance',[AllowanceController::class,'update'])->name('updateAllowance');
+Route::get('/deleteallowance/{id}',[AllowanceController::class,'delete'])->name('deleteAllowance');
+Route::post('/searchallowance',[AllowanceController::class,'search'])->name('searchAllowance');
+
+// deduction setting route
+Route::get('/deduction',[DeductionController::class,'show'])->name('showDeduction');
+Route::get('/deduction/addallowance',[DeductionController::class,'create'])->name('showAddDeduction');
+Route::post('/deduction/store',[DeductionController::class,'store'])->name('addDeduction');
+Route::get('/editdeduction/{id}',[DeductionController::class,'edit'])->name('editDeduction');
+Route::post('/updatededuction',[DeductionController::class,'update'])->name('updateDeduction');
+Route::get('/deletededuction/{id}',[DeductionController::class,'delete'])->name('deleteDeduction');
+Route::post('/searchdeduction',[DeductionController::class,'search'])->name('searchDeduction');
+
+// payroll generate
+Route::get('/payrollgenerate', [PayrollController::class,'showPayrollGenerate'])->name('showPayrollGenerate');
+Route::get('/payrollgenerate/addpayroll/{id}', [PayrollController::class,'create'])->name('showAddPayroll');
+Route::post('/payrollgenerate/addpayroll/store', [PayrollController::class,'store'])->name('addPayroll');
+Route::get('/personalpayroll', [PayrollController::class, 'show'])->name('showPayroll');
+Route::get('/personalpayrolldetail/{id}', [PayrollController::class, 'view'])->name('viewPayrollDetail');
 
 // employee show
 Route::get('/employee',[EmployeeController::class,'show'])->name('showEmployee');

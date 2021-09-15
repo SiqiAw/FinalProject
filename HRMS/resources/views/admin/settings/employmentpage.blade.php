@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-@include('admin.addemployment')
+@include('admin.settings.addemployment')
 
     <div class="container">
 
@@ -59,7 +59,7 @@
                         <i class="bi bi-trash-fill"></i>
                     </a>
                 </td>
-                @include('admin.editemployment')
+                @include('admin.settings.editemployment')
             </tr>
             @endforeach
         </table>

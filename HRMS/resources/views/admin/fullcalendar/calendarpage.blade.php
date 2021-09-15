@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-@include('admin.addevent')
+@include('admin.fullcalendar.addevent')
 
     <div class="container">
         <div class="d-grid gap-2 d-md-block" style="margin-bottom: 20px;">

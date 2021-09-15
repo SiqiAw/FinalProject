@@ -28,10 +28,8 @@
                   </select>
                 </div>
                 <div class="mb-3">
-                    <label>Description</label>
-                    <textarea type="text" class="form-control" id="description" name="description">
-                        {{ $jobtitle->description }}
-                    </textarea>
+                    <label>Rate per Hour (RM)</label>
+                    <input type="text" class="form-control" id="rate_per_hour" name="rate_per_hour" value="{{ $jobtitle->rate_per_hour }}" >
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

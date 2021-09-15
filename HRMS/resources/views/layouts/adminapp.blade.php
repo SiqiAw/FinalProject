@@ -46,7 +46,26 @@
                     <a href="#">Leave</a>
                 </li>
                 <li>
-                    <a href="#">Payroll</a>
+                    <a href="#pageSubmenu1" class="dropdown-toggle" data-bs-toggle="collapse" aria-expanded="false">
+                        Payroll<i class="fas fa-sort-down" style="margin-left:65%;"></i>
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu1">
+                        <li>
+                            <a href="{{ route('showPayrollGenerate') }}">Payroll Generate</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showPayroll') }}">Payroll History</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showAllowance') }}">Allowance</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('showDeduction') }}">Deduction</a>
+                        </li>
+                        <li>
+                            <a href="">PCB setting</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{ route('admin.recruitment') }}">
@@ -151,8 +170,7 @@
             <div class="content-header mt-3">
                 @yield('content-header')
             </div>
-
-
+            
             <div id="content">
                 <main>
                         @yield('content')

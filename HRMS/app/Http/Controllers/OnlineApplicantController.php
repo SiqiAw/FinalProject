@@ -12,8 +12,9 @@ use App\Models\City;
 use App\Models\State;
 use App\Models\Jobtitle;
 use App\Models\Employee;
-use Session;
-use DB;
+use App\Models\Nationality;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use Notification;
 use App\Notifications\Congratulation;
 use App\Notifications\Unfortunately;
@@ -26,7 +27,8 @@ class OnlineApplicantController extends Controller
         return view('guest.onlinerecruitment')->with("countries", Country::all())
                                               ->with("cities", City::all())
                                               ->with("states", State::all())
-                                              ->with("jobtitles", Jobtitle::all());
+                                              ->with("jobtitles", Jobtitle::all())
+                                              ->with("nationalities", Nationality::all());
     }
 
     function store(Request $request)
@@ -70,14 +72,14 @@ class OnlineApplicantController extends Controller
     function adminshow()
     {
         $onlineapplicants = OnlineApplicant::all();
-        return view('admin.adminrecruit')->with('onlineapplicants', $onlineapplicants);
+        return view('admin.onlinerecruitment.adminrecruit')->with('onlineapplicants', $onlineapplicants);
         
     }
 
     function view($id)
     {
         $onlineapplicants = OnlineApplicant::all()->where('id', $id);
-        return view('admin.recruitmentdetail')->with('onlineapplicants', $onlineapplicants);
+        return view('admin.onlinerecruitment.recruitmentdetail')->with('onlineapplicants', $onlineapplicants);
     }
 
     function download($id)
@@ -140,7 +142,7 @@ class OnlineApplicantController extends Controller
         ->orWhere('gender', 'like', '%' . $keyword . '%')
         ->get();
         
-        return view('admin.adminrecruit')->with('onlineapplicants', $onlineapplicants);
+        return view('admin.onlinerecruitment.adminrecruit')->with('onlineapplicants', $onlineapplicants);
     }
 
     public function sendSuccessful($id)

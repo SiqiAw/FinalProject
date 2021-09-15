@@ -16,6 +16,7 @@ class CreateAllowancesTable extends Migration
         Schema::create('allowances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('allowance_item');
+            $table->double('amount');
             $table->timestamps();
         });
     }

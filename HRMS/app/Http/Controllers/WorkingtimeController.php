@@ -12,7 +12,7 @@ class WorkingtimeController extends Controller
 {
     function create()
     {
-        return view('admin.addworkingtime');
+        return view('admin.settings.addworkingtime');
     }
 
     function store(Request $request)
@@ -20,14 +20,12 @@ class WorkingtimeController extends Controller
         $this->validate($request,[
             'start' => 'required',
             'end'=> 'required',
-            'duration'=> 'required',
         ]);
 
         $workingtimes = new Workingtime;
 
         $workingtimes->start = $request->input('start');
         $workingtimes->end = $request->input('end');
-        $workingtimes->duration = $request->input('duration');
         
         $workingtimes->save();
 
@@ -38,13 +36,13 @@ class WorkingtimeController extends Controller
     function show()
     {
         $workingtimes = Workingtime::all();
-        return view('admin.workingtime')->with('workingtimes', $workingtimes);
+        return view('admin.settings.workingtime')->with('workingtimes', $workingtimes);
     }
 
     function edit($id)
     {
         $workingtimes = Workingtime::find($id);
-        return view('admin.wokingtime', compact('workingtimes','id'));
+        return view('admin.settings.wokingtime', compact('workingtimes','id'));
     }
 
     function update()
@@ -54,7 +52,6 @@ class WorkingtimeController extends Controller
 
         $workingtimes->start=$r->start;
         $workingtimes->end=$r->end;
-        $workingtimes->duration=$r->duration;
         
         $workingtimes->save(); 
         return redirect()->route('showWRKtime');
@@ -76,9 +73,8 @@ class WorkingtimeController extends Controller
         $workingtimes = DB::table('workingtimes')
         ->where('start', 'like', '%' .$keyword. '%')
         ->orWhere('end', 'like', '%' .$keyword. '%')
-        ->orWhere('duration', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('admin.workingtime')->with('workingtimes', $workingtimes);
+        return view('admin.settings.workingtime')->with('workingtimes', $workingtimes);
     }
 }

@@ -11,7 +11,7 @@ class BanknameController extends Controller
 {
     function create()
     {
-        return view('admin.addbankname');
+        return view('admin.settings.addbankname');
     }
 
     function store(Request $request)
@@ -33,13 +33,13 @@ class BanknameController extends Controller
     function show()
     {
         $banknames = Bankname::all();
-        return view('admin.banknamepage')->with('banknames', $banknames);
+        return view('admin.settings.banknamepage')->with('banknames', $banknames);
     }
 
     function edit($id)
     {
         $banknames = Bankname::find($id);
-        return view('admin.editbankname', compact('banknames','id'));
+        return view('admin.settings.editbankname', compact('banknames','id'));
     }
 
     function update()
@@ -70,6 +70,6 @@ class BanknameController extends Controller
         ->where('name', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('admin.banknamepage')->with('banknames', $banknames);
+        return view('admin.settings.banknamepage')->with('banknames', $banknames);
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.hrms')
+@extends('layouts.adminapp')
 @section('content')
 
     <div class="container">

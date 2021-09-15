@@ -16,4 +16,20 @@ class Employee extends Model
     'marital_status', 'leave_grade', 'employee_grade',
     'epf_account_number','workingSchedule'];
 
+    public function allowance() {
+        return $this->hasMany('App\Models\Allowance');
+    }
+
+    public function deduction() {
+        return $this->hasMany('App\Models\Deduction');
+    }
+
+    public function overtime() {
+        return $this->hasMany('App\Models\Overtime');
+    }
+
+    public function payroll() {
+        return $this->hasMany('App\Models\Payroll');
+    }
+
 }

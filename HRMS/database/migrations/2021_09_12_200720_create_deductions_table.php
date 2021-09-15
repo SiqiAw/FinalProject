@@ -16,6 +16,7 @@ class CreateDeductionsTable extends Migration
         Schema::create('deductions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('deduct_item');
+            $table->double('amount');
             $table->timestamps();
         });
     }

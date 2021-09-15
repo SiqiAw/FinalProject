@@ -79,7 +79,7 @@
                     </a>
                 @endif
                 </td>
-                @include('admin.editevent')
+                @include('admin.fullcalendar.editevent')
             </tr>
             @endforeach
         </table>

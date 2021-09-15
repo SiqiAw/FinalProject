@@ -11,7 +11,7 @@ class CountryController extends Controller
 {
     function create()
     {
-        return view('admin.addcountry');
+        return view('admin.settings.addcountry');
     }
 
     function store(Request $request)
@@ -33,13 +33,13 @@ class CountryController extends Controller
     function show()
     {
         $countries = Country::all();
-        return view('admin.countrypage')->with('countries', $countries);
+        return view('admin.settings.countrypage')->with('countries', $countries);
     }
 
     function edit($id)
     {
         $countries = Country::find($id);
-        return view('admin.editcountry', compact('countries','id'));
+        return view('admin.settings.editcountry', compact('countries','id'));
     }
 
     function update()
@@ -70,6 +70,6 @@ class CountryController extends Controller
         ->where('name', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('admin.countrypage')->with('countries', $countries);
+        return view('admin.settings.countrypage')->with('countries', $countries);
     }
 }

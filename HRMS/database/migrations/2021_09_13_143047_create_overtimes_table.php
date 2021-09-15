@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalariesTable extends Migration
+class CreateOvertimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateSalariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('salaries', function (Blueprint $table) {
+        Schema::create('overtimes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->datetime('date_overtime');
             $table->string('employee_id');
             $table->string('employee_name');
-            $table->string('bank_name');
-            $table->string('bank_acc_num');
+            $table->double('hours');
+            $table->double('rate');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateSalariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salaries');
+        Schema::dropIfExists('overtimes');
     }
 }

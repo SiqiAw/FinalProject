@@ -32,13 +32,13 @@ class EventController extends Controller
         }
         
         $calendar = Calendar::addEvents($events);
-        return view('admin.calendarpage', compact('calendar'));
+        return view('admin.fullcalendar.calendarpage', compact('calendar'));
 
     }
 
     public function display()
     {
-        return view('admin.addevent');
+        return view('admin.fullcalendar.addevent');
     }
 
     public function store(Request $request)
@@ -67,13 +67,13 @@ class EventController extends Controller
     public function show(Request $request)
     {
         $events = Event::all();
-        return view('admin.eventlist')->with('events', $events);
+        return view('admin.fullcalendar.eventlist')->with('events', $events);
     }
 
     public function edit($id)
     {
         $events = Event::find($id);
-        return view('admin.editevent', compact('events','id'));
+        return view('admin.fullcalendar.editevent', compact('events','id'));
     }    
 
     public function update()
@@ -111,7 +111,7 @@ class EventController extends Controller
         ->orWhere('end_date', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('admin.eventlist')->with('events', $events);
+        return view('admin.fullcalendar.eventlist')->with('events', $events);
     }
 
     public function search()
@@ -123,7 +123,7 @@ class EventController extends Controller
         ->orWhere('start_date', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('admin.eventlist')->with('events', $events);
+        return view('admin.fullcalendar.eventlist')->with('events', $events);
     }
 
     /* function for employee */

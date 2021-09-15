@@ -12,7 +12,7 @@ class CityController extends Controller
     //
     function create()
     {
-        return view('admin.addcity');
+        return view('admin.settings.addcity');
     }
 
     function store(Request $request)
@@ -32,13 +32,13 @@ class CityController extends Controller
     function show()
     {
         $cities = City::all();
-        return view('admin.citypage')->with('cities', $cities);
+        return view('admin.settings.citypage')->with('cities', $cities);
     }
 
     function edit($id)
     {
         $cities = City::find($id);
-        return view('admin.editcity',compact('cities','id'));
+        return view('admin.settings.editcity',compact('cities','id'));
     }
 
     function update()
@@ -49,6 +49,7 @@ class CityController extends Controller
         $cities->name=$r->name;
         
         $cities->save();
+        Session::flash('success', "City successfully updated.");
         return redirect()->route('showCity');
     }
 
@@ -69,6 +70,6 @@ class CityController extends Controller
         ->where('name', 'like', '%' . $keyword . '%')
         ->get();
         
-        return view('admin.citypage')->with('cities', $cities);
+        return view('admin.settings.citypage')->with('cities', $cities);
     }
 }

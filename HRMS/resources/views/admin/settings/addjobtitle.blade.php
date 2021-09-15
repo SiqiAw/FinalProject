@@ -23,8 +23,8 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="">Description</label>
-                <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter description of the job"></textarea>
+                <label for="">Rate per Hour (RM)</label>
+                <input type="text" class="form-control" id="rate_per_hour" name="rate_per_hour" placeholder="Enter description of the job">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

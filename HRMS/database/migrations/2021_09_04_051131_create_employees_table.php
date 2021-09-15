@@ -35,11 +35,14 @@ class CreateEmployeesTable extends Migration
             $table->string('emergency_Name');
             $table->string('emergency_Contact_Number');
             $table->string('document');
+            $table->string('status');
             $table->string('employment')->nullable();
             $table->string('marital_status');
             $table->string('leave_grade')->nullable();
             $table->string('employee_grade')->nullable();
             $table->integer('epf_account_number')->nullable();
+            $table->string('bankname')->nullable();
+            $table->bigIncrements('bank_acc_num')->nullable();
             $table->time('workingSchedule')->nullable();
             $table->timestamps();
         });

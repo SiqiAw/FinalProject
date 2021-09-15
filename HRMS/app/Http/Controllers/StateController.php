@@ -11,7 +11,7 @@ class StateController extends Controller
 {
     function create()
     {
-        return view('admin.addstate');
+        return view('admin.settings.addstate');
     }
 
     function store(Request $request)
@@ -33,13 +33,13 @@ class StateController extends Controller
     function show()
     {
         $states = State::all();
-        return view('admin.statepage')->with('states', $states);
+        return view('admin.settings.statepage')->with('states', $states);
     }
 
     function edit($id)
     {
         $states = State::find($id);
-        return view('admin.editstate', compact('states','id'));
+        return view('admin.settings.editstate', compact('states','id'));
     }
 
     function update()
@@ -70,6 +70,6 @@ class StateController extends Controller
         ->where('name', 'like', '%' .$keyword. '%')
         ->get();
 
-        return view('admin.statepage')->with('states', $states);
+        return view('admin.settings.statepage')->with('states', $states);
     }
 }

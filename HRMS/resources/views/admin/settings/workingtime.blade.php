@@ -4,13 +4,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h3 class="m-0">Bank Name</h3>
+                <h3 class="m-0">Working Time</h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end mt-2">
                     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                     <li class="breadcrumb-item active">Settings</li>
-                    <li class="breadcrumb-item active">Bank Name</li>
+                    <li class="breadcrumb-item active">Working Time</li>
                 </ol>
             </div>
         </div>
@@ -18,16 +18,16 @@
 @endsection
 
 @section('content')
-@include('admin.addbankname')
 
+@include('admin.settings.addworkingtime')
     <div class="container">
 
         <div style="margin-bottom: 20px;">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBankname">
-                Add Bank
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addWRKtime">
+                Add Working Time
             </button>
             <div class="col-md-3" style="float:right;">
-                <form class="input-group" method="post" action="{{ route('searchBankname') }}">
+                <form class="input-group" method="post" action="{{ route('searchWRKtime') }}">
                     @csrf
                     <input type="text" class="form-control" id="search" name="search" placeholder="search">
                     <button class="btn btn-dark" type="submit">Search</button>
@@ -43,41 +43,46 @@
             @endif
         </div>
 
-        <table id="bankTableid" class="table table-bordered table-hover">
+        <table id="timeTableid" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th width="5%">ID</th>
-                    <th>Bank Name</th>
-                    <th style="text-align:center;">Action</th>
+                    <th width="25%">Start Time</th>
+                    <th width="25%">End Time</th>
+                    <th width="25%">Duration</th>
+                    <th width="20%" style="text-align:center;">Action</th>
                 </tr>
             </thead>
-            @foreach($banknames as $bankname)
+            @foreach($workingtimes as $workingtime)
             <tr>
-                <td>{{ $bankname->id }}</td>
-                <td>{{ $bankname->name }}</td>
-                
+                <td>{{ $workingtime->id }}</td>
+                <td>{{ $workingtime->start }}</td>
+                <td>{{ $workingtime->end }}</td>
+                <td>{{ $workingtime->duration }}</td>
+                    
                 <td style="text-align:center;">
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editBankname{{$bankname->id}}">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editWRKtime{{$workingtime->id}}">
                         <i class="bi bi-pencil-square"></i>
                     </button>
-                    <a href="{{ route('deleteBankname', ['id' => $bankname->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this bank?')">
+                    <a href="{{ route('deleteWRKtime', ['id' => $workingtime->id])}}" class="btn btn-danger" onclick="return confirm('Comfirm to delete this deparment?')">
                         <i class="bi bi-trash-fill"></i>
                     </a>
                 </td>
-                @include('admin.editbankname')
-            </tr>
+                @include('admin.settings.editworkingtime')
+                </tr>
             @endforeach
         </table>
-        <a href="{{ route('showBankname') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
+        <a href="{{ route('showWRKtime') }}" type="submit" class="mt-2 btn btn-warning" style="float:right;">
             Back
         </a>
     </div>
+
 @endsection
 
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#bankTableid').DataTable({
+            $('#timeTableid').DataTable({
                 "pagingType": "full_numbers",
                 "searching": false,
             });
