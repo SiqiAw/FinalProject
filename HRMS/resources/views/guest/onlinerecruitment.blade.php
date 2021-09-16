@@ -218,7 +218,3 @@
         </form>
     </div>
 @endsection
-
-@section('script')
-    <script type="text/javascript" src="{{ asset('js/validation.js') }}"></script>
-@endsection

@@ -43,10 +43,26 @@
                     <a href="#">Attendance</a>
                 </li>
                 <li>
-                    <a href="#">Leave</a>
+                    <a href="#pageSubmenu1" class="dropdown-toggle" data-bs-toggle="collapse" aria-expanded="false">
+                        Leave<i class="fas fa-sort-down" style="margin-left:68%;"></i>
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu1">
+                        <li>
+                            <a href="">Leave Grade</a>
+                        </li>
+                        <li>
+                            <a href="">Payroll History</a>
+                        </li>
+                        <li>
+                            <a href="">Allowance</a>
+                        </li>
+                        <li>
+                            <a href="">Deduction</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu1" class="dropdown-toggle" data-bs-toggle="collapse" aria-expanded="false">
+                    <a href="#pageSubmenu2" class="dropdown-toggle" data-bs-toggle="collapse" aria-expanded="false">
                         Payroll<i class="fas fa-sort-down" style="margin-left:65%;"></i>
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu1">
